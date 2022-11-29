@@ -1,0 +1,28 @@
+<!--<mat-card class="mat-elevation-z4">-->
+
+  <mat-toolbar color="primary">
+    Post Something Up!
+  </mat-toolbar>
+
+  <img id="selectedPhoto" [src]="imgSrc">
+
+  <div class="inputBox">
+    <label for="file-upload" class="custom-upload">
+      <i class="fa fa-cloud-upload"></i> Choose Photo
+    </label>
+    <input id="file-upload" type="file" (change)="onFileSelected($event)" #inputFile>
+
+    <button class="remove" (click)="onRemovePhoto()">Remove Photo</button>
+  </div>
+
+  <div>
+<!--    <input type="text" size="100" (keyup)="onTextBox($event)" #textBox>-->
+    <textarea placeholder="Share the moment..." rows="4" cols="67" (keyup)="onTextBox($event)" #textBox></textarea>
+  </div>
+
+  <button mat-button type="upload" (click)="onUpload()">upload</button>
+
+  <button mat-button (click)="close()">Close</button>
+
+<!--</mat-card>-->
+

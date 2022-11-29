@@ -1,0 +1,54 @@
+.mat-card {
+  border-top: 30px;
+  margin-left: 20px;
+  max-height: 900px;
+  width: 700px;
+}
+
+mat-toolbar {
+}
+
+img {
+  /*margin-left: 20px;*/
+  margin-top: 20px;
+  margin-bottom: 10px;
+  max-width: 500px;
+  max-height: 400px;
+}
+
+button[type="upload"] {
+  /*margin-left: 20px;*/
+  margin-top: 20px;
+  display: inline-block;
+  cursor: pointer;
+  background-color: darksalmon;
+}
+
+textarea {
+  /*margin-left: 20px;*/
+  margin-top: 20px;
+}
+
+.inputBox {
+  /*margin-left: 20px;*/
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.remove {
+  margin-left: 30px;
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  background-color: whitesmoke;
+}

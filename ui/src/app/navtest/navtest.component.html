@@ -1,0 +1,11 @@
+<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+  <li [ngbNavItem]=1>
+    <a ngbNavLink>upload post</a>
+    <ng-template ngbNavContent>
+      <app-post-upload></app-post-upload>
+    </ng-template>
+  </li>
+</ul>
+
+<div [ngbNavOutlet]="nav" class="mt-2"></div>
+

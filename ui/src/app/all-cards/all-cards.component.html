@@ -1,0 +1,6 @@
+<mat-toolbar color="primary">
+  All Posts
+</mat-toolbar>
+<div class="all-cards">
+  <app-card *ngFor="let data of postDataList" [imgSrc]="data.photo_url" [postText]="data.post_text"></app-card>
+</div>
