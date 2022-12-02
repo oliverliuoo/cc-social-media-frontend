@@ -8,7 +8,7 @@ import {TempComponent} from "./temp-page/temp.component";
 
 const routes: Routes = [
   { path: 'all-posts/:user_id/users', component: AllCardsComponent },
-  { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent},
   { path: 'signup', component: SignupComponent},
   { path: 'home', component: TempComponent}
