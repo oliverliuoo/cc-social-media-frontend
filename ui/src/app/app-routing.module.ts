@@ -4,7 +4,7 @@ import {AllCardsComponent} from './all-cards/all-cards.component';
 
 
 const routes: Routes = [
-  { path: 'all-posts', component: AllCardsComponent },
+  { path: 'all-posts/:user_id/users', component: AllCardsComponent },
   { path: '', redirectTo: '/', pathMatch: 'full' },
 ];
 
