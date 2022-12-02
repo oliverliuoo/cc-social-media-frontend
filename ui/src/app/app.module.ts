@@ -21,6 +21,10 @@ import { AppRoutingModule } from './app-routing.module';
 import {MatDialogModule} from '@angular/material/dialog';
 
 
+import {LoginComponent} from "./login-page/login.component";
+import {SignupComponent} from "./signup-page/signup.component";
+import {TempComponent} from "./temp-page/temp.component";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +33,13 @@ import {MatDialogModule} from '@angular/material/dialog';
     PostUploadComponent,
     CardComponent,
     AllCardsComponent,
-    PostUploadDialogComponent
+    PostUploadDialogComponent,
+    // login page
+    LoginComponent,
+    // signup
+    SignupComponent,
+    // temp home component
+    TempComponent,
   ],
   imports: [
     BrowserModule,
