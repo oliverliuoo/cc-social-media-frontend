@@ -14,6 +14,7 @@ import {Component, Injectable, OnInit} from '@angular/core';
 export class NavbarComponent implements OnInit {
 
   currentPage: string;
+  user: string;
 
   constructor() {
   }
@@ -21,6 +22,8 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     // this.currentPage = 'Home';
     // console.log('NavbarComponent: OnInit called.');
+    // TODO: set user while login
+    this.user = 'hl3518';
   }
 
 
