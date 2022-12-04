@@ -25,6 +25,9 @@ import {LoginComponent} from "./login-page/login.component";
 import {SignupComponent} from "./signup-page/signup.component";
 import {TempComponent} from "./temp-page/temp.component";
 
+import { FollowingsComponent } from './followings/followings.component';
+import {FollowersComponent} from './followers/followers.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +43,9 @@ import {TempComponent} from "./temp-page/temp.component";
     SignupComponent,
     // temp home component
     TempComponent,
+    // follow
+    FollowingsComponent,
+    FollowersComponent,
   ],
   imports: [
     BrowserModule,
