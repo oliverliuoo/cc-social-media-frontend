@@ -1,0 +1,5 @@
+<div>Logged in! Should show user-related info here.</div>
+<app-post-upload-dialog></app-post-upload-dialog>
+<div class="all-feeds">
+  <app-card *ngFor="let data of postDataList" [imgSrc]="data.photo_url" [postText]="data.post_text"></app-card>
+</div>

@@ -2,6 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {Router} from "@angular/router";
 
 import {PostUploadService} from './post-upload.service';
 
@@ -15,6 +16,7 @@ export class PostUploadComponent implements OnInit {
 
   constructor(postUploadService: PostUploadService,
               private http: HttpClient,
+              private router: Router,
               public dialogRef: MatDialogRef<PostUploadComponent>) {
     this.postUploadService = postUploadService;
     this.postText = '';
@@ -24,6 +26,7 @@ export class PostUploadComponent implements OnInit {
   imgSrc: string;
   postUploadService: PostUploadService;
   postText: string;
+  userId: string;
   placeHolderSrc = 'https://social-media-photo-bucket.s3.us-east-2.amazonaws.com/placeholder.png';
 
   @ViewChild('textBox') textBox: ElementRef;
@@ -47,6 +50,14 @@ export class PostUploadComponent implements OnInit {
   }
 
   async onUpload(): Promise<void> {
+    this.userId = localStorage.getItem('userId');
+    if (this.userId === '') {
+      alert('please login first.')
+      //this.uploadDialog.close();
+      await this.router.navigateByUrl('login');
+      this.dialogRef.close();
+      return;
+    }
     if (this.imgSrc === this.placeHolderSrc) {
       alert('please select a photo to post!');
       return;
@@ -63,7 +74,7 @@ export class PostUploadComponent implements OnInit {
       console.log(objS3GetUrl);
       // post payload
       const postData = {
-        user_id: 'hl3518',
+        user_id: this.userId,
         post_id: newPostId,
         photo_url: objS3GetUrl,
         post_text: this.postText
@@ -91,6 +102,7 @@ export class PostUploadComponent implements OnInit {
     this.inputFile.nativeElement.value = '';
     this.textBox.nativeElement.value = '';
     this.imgSrc = this.placeHolderSrc;
+    close();
   }
 
   onRemovePhoto(): void {

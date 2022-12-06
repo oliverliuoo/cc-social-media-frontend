@@ -23,10 +23,11 @@ import {MatDialogModule} from '@angular/material/dialog';
 
 import {LoginComponent} from "./login-page/login.component";
 import {SignupComponent} from "./signup-page/signup.component";
-import {TempComponent} from "./temp-page/temp.component";
+import {HomePageComponent} from "./home-page/home-page.component";
 
 import { FollowingsComponent } from './followings/followings.component';
-import {FollowersComponent} from './followers/followers.component';
+import { FollowersComponent } from './followers/followers.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -41,11 +42,11 @@ import {FollowersComponent} from './followers/followers.component';
     LoginComponent,
     // signup
     SignupComponent,
-    // temp home component
-    TempComponent,
     // follow
     FollowingsComponent,
     FollowersComponent,
+    HomePageComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
