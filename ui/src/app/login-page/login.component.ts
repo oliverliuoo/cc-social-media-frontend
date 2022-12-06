@@ -4,6 +4,7 @@ import { LoginServiceService } from './log.service';
 import {User} from './log';
 import {Router} from '@angular/router';
 import {NavigationExtras} from '@angular/router';
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,9 @@ export class LoginComponent implements OnInit {
   password: string;
   message: string;
 
-  constructor(loginService: LoginServiceService, private router: Router) {
+  constructor(loginService: LoginServiceService,
+              private router: Router,
+              private cookieService: CookieService) {
     this.loginService = loginService;
     this.studentsInfo = undefined;
     // login
@@ -44,8 +47,10 @@ export class LoginComponent implements OnInit {
     console.log(this.password);
     // change to secure method
     if (OutMessage.Password === this.password) {
+      // store userId in cookie
+      localStorage.setItem('userId', OutMessage.UserID)
       // jump to the home page
-      this.router.navigateByUrl('/home').then(r => {
+      this.router.navigateByUrl('/home/' + OutMessage.UserID).then(r => {
         console.log(r); // true if navigation is successful
       }, err => {
         console.log(err); // when there's an error

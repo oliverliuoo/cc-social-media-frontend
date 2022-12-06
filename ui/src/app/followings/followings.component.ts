@@ -17,13 +17,14 @@ export class FollowingsComponent implements OnInit {
   constructor(followingService: FollowingServiceService) {
     this.followingService = followingService;
     this.followingList = [];
-    this.userID = 'jp4209';
+    this.userID = '';
     this.numberOfFollowing = 0;
   }
 
   ngOnInit(): void {
     // this.followingService.getFollowings(this.userID)
     //   .subscribe((data) => this.setFollowingList(data));
+    this.userID = localStorage.getItem('userId');
   }
 
   setFollowingList(theFollowing: Following): void {
