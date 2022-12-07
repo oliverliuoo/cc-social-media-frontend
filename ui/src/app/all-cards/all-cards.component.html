@@ -1,6 +1,14 @@
 <mat-toolbar color="primary">
   All Posts
 </mat-toolbar>
+<div>
+  <span class="user_name">You are viewing: {{userId}}</span>
+  <div>
+    <button type="button" (click)="onFollow()" class="btn btn-primary my_button" id="follow">Follow</button>
+    <button type="button" (click)="onUnfollow()" class="btn btn-primary my_button" id="unfollow">Unfollow</button>
+    <div id="unfollow_text"></div>
+  </div>
+</div>
 <div class="all-cards">
   <app-card *ngFor="let data of postDataList" [imgSrc]="data.photo_url" [postText]="data.post_text"></app-card>
 </div>

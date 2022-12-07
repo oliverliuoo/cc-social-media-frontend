@@ -9,7 +9,7 @@ import { FollowingServiceService } from './following-service.service';
 })
 export class FollowingsComponent implements OnInit {
 
-  followingList: Following[];
+  followingList: string[];
   userID: string;
   followingService: FollowingServiceService;
   numberOfFollowing: number;
@@ -22,32 +22,26 @@ export class FollowingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.followingService.getFollowings(this.userID)
-    //   .subscribe((data) => this.setFollowingList(data));
     this.userID = localStorage.getItem('userId');
+    this.followingService.getFollowings(this.userID)
+      .subscribe((data) => this.setFollowingList(data));
   }
 
   setFollowingList(theFollowing: Following): void {
     // for (let i = 0; i < theFollowing.length; i++) {
     // @ts-ignore
     for (const item of theFollowing) {
-      const following = new Following();
-      following.FollowingID = item.FollowingID;
-      following.UserID = item.UserID;
-      this.followingList.push(following);
-      console.log(following);
+      this.followingList.push(item.FollowingID);
       this.numberOfFollowing += 1;
     }
-
-    const btn = document.getElementById('show_following') as HTMLButtonElement | null;
-    btn?.setAttribute('disabled', '');
   }
 
   onLookup(): void {
-    this.followingService.getFollowings(this.userID)
-      .subscribe((data) => this.setFollowingList(data));
+    const btn = document.getElementById('show_following') as HTMLButtonElement | null;
+    btn?.setAttribute('disabled', '');
 
-    const txt = document.getElementById('following_number')
-    txt.style.display = 'block';
+    const table = document.getElementById('following_list')
+    table.style.display = 'table';
   }
+
 }
