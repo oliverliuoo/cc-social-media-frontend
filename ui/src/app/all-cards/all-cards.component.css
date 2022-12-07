@@ -3,3 +3,22 @@
   flex-flow: row wrap;
   /*justify-content: space-around;*/
 }
+
+.user_name {
+  margin-left: 20px;
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.my_button {
+  margin: 10px;
+}
+
+#unfollow {
+  display: none;
+}
+
+#unfollow_text {
+  margin: 10px;
+  font-weight: bold;
+}

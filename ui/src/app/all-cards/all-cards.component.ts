@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router'
+import { FollowingServiceService } from './follow-service.service';
+import {SignupServiceService} from "../signup-page/signup.service";
 
 @Component({
   selector: 'app-all-cards',
@@ -9,10 +11,14 @@ import { ActivatedRoute } from '@angular/router'
 })
 export class AllCardsComponent implements OnInit {
   userId: string;
+  loginId: string;
   postDataList: Array<any> = [];
   postUrl: string;
+  followService: FollowingServiceService;
   // postUrl = 'http://127.0.0.1:5000/post/hl3518/user';
-  constructor(private http: HttpClient, private route: ActivatedRoute) {
+  constructor(private http: HttpClient, private route: ActivatedRoute, followingService: FollowingServiceService) {
+    this.followService = followingService;
+    this.loginId = localStorage.getItem('userId');
   }
 
   ngOnInit(): void {
@@ -25,5 +31,38 @@ export class AllCardsComponent implements OnInit {
         this.postDataList.push(record);
       }
     });
+  }
+
+  changeToFollowing() {
+    const follow_btn = document.getElementById('follow')
+    follow_btn.innerText = 'Following';
+    follow_btn.style.background = '#cccccc';
+    follow_btn.setAttribute('disabled', '');
+
+    const unfollow_btn = document.getElementById('unfollow')
+    unfollow_btn.style.display = 'inline';
+  }
+
+  unfollow() {
+    const follow_btn = document.getElementById('follow')
+    follow_btn.innerText = 'Follow';
+    follow_btn.style.background = '#007bff';
+    follow_btn.removeAttribute('disabled');
+
+    const unfollow_btn = document.getElementById('unfollow')
+    unfollow_btn.style.display = 'none';
+
+    const unfollow_txt = document.getElementById('unfollow_text')
+    unfollow_txt.innerText = 'Unfollowed ' + this.userId + "!";
+  }
+
+  onFollow(): void {
+    //this.followService.insertNewFollowing(this.userId, this.loginId)
+    this.changeToFollowing()
+    console.log(this.userId, this.loginId)
+  }
+
+  onUnfollow(): void {
+    this.unfollow()
   }
 }
