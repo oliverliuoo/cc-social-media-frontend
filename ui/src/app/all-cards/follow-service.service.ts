@@ -22,18 +22,19 @@ export class FollowingServiceService {
       result = undefined;
     }
     else {
-      result = 'http://127.0.0.1:5011/new-follower/';
+      result = 'http://127.0.0.1:5011/new-follower';
     }
     return result;
   }
 
   insertNewFollowing(userid, followingid): Observable<any> {
-    console.log("insert here")
+    console.log("add following here", userid, followingid)
     let theUrl: string;
 
     theUrl = this.getInsertNewServiceUrl();
     console.log(theUrl);
     const result = this.http.post(theUrl, {'userid': userid, 'followingid': followingid});
+    console.log(result)
 
     return result;
   }

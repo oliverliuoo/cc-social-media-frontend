@@ -13,17 +13,16 @@
         <button id="show_following" type="button" (click)="onLookup()" class="btn btn-primary">Show!</button>
         <!-- You typed: <span *ngIf="artistName"> "{{ artistName }}" </span> -->
         <p></p>
-        <table class="table table-striped">
+        <table id='following_list' class="table table-striped">
           <thead>
           <tr>
 <!--            <th scope="col">UserID</th>-->
-            <th id="following_number" scope="col">{{numberOfFollowing}} followings of user {{userID}}</th>
+            <th scope="col">{{numberOfFollowing}} followings of user {{userID}}</th>
           </tr>
           </thead>
-          <tbody>
-          <tr *ngFor="let p of followingList; index as i">
-<!--            <td>{{ p.UserID }}</td>-->
-            <td>{{ p.FollowingID }}</td>
+          <tbody >
+          <tr *ngFor="let id of followingList; index as i">
+            <td>{{ id }}</td>
           </tr>
           </tbody>
         </table>
