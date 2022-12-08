@@ -29,7 +29,7 @@ export class FollowingServiceService {
       result = undefined;
     }
     else {
-      result = 'http://127.0.0.1:5011/followings/';
+      result = 'https://127.0.0.1:5011/followings/';
     }
     return result;
   }

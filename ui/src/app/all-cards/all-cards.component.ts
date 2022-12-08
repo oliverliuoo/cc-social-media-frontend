@@ -45,7 +45,7 @@ export class AllCardsComponent implements OnInit {
     }
   }
 
-  changeToFollowing() {
+  Follow() {
     const follow_btn = document.getElementById('follow')
     follow_btn.innerText = 'Following';
     follow_btn.style.background = '#cccccc';
@@ -73,10 +73,11 @@ export class AllCardsComponent implements OnInit {
 
   onFollow(): void {
     this.followService.insertNewFollowing(this.loginId, this.userId).subscribe((data) => {console.log(data)});
-    this.changeToFollowing()
+    this.Follow()
   }
 
   onUnfollow(): void {
+    this.followService.deleteAndUnfollow(this.loginId, this.userId).subscribe((data) => {console.log(data)});
     this.unfollow()
   }
 }
