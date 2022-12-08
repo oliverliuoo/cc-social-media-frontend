@@ -1,4 +1,5 @@
 import {Component, Injectable, OnInit} from '@angular/core';
+import { HttpClient } from "@angular/common/http";
 
 import { Router } from '@angular/router';
 
@@ -19,7 +20,7 @@ export class NavbarComponent implements OnInit {
   currentPage: string;
   userId: string;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private http: HttpClient) {
   }
 
   ngOnInit(): void {
@@ -31,9 +32,11 @@ export class NavbarComponent implements OnInit {
   }
 
   onLogOut(): void {
-    localStorage.removeItem('userId');
-    this.userId = '';
-    this.router.navigateByUrl('login');
+    this.http.get('https://127.0.0.1:5011/logout').subscribe((rsp) => {
+      localStorage.removeItem('userId');
+      this.userId = '';
+      this.router.navigateByUrl('login');
+    })
   }
 
   onClickAllPosts(): void {

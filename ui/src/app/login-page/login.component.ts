@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {NgForm} from '@angular/forms';
+import {Component, Inject, OnInit} from '@angular/core';
+import { DOCUMENT } from "@angular/common";
 import { LoginServiceService } from './log.service';
 import {User} from './log';
 import {Router} from '@angular/router';
-import {NavigationExtras} from '@angular/router';
-import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-login',
@@ -18,17 +16,17 @@ export class LoginComponent implements OnInit {
   loginService: LoginServiceService;
   studentsInfo: User[];
   // login
-  userid: string;
+  email: string;
   password: string;
   message: string;
 
   constructor(loginService: LoginServiceService,
               private router: Router,
-              private cookieService: CookieService) {
+              @Inject(DOCUMENT) private document: Document) {
     this.loginService = loginService;
     this.studentsInfo = undefined;
     // login
-    this.userid =  undefined;
+    this.email =  undefined;
     this.password = undefined;
     this.message = undefined;
   }
@@ -61,22 +59,51 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  // login button
-  onLogin(): void {
-    // use user api: http://18.221.129.134:5011/users/<userid>
-    // to get password
-    if (this.userid && this.password) {
-      // use userid or email
-      // userid
-      this.loginService.getUser(this.userid)
-        .subscribe((data) => this.setMessage(data));
-      // need another api .../users/<email> to get password by email
+  handleLoginResponse(rsp): void {
+    let userData = rsp.data;
+    let msg = rsp.msg;
+    if (userData === null) {
+      // login unsuccessful
+      this.message = msg;
+    } else {
+      // store user info in localStorage
+      localStorage.setItem('userId', userData.UserID);
+      localStorage.setItem('userName', userData.Username);
+      localStorage.setItem('userEmail', userData.Email);
+      // jump to the home page
+      this.router.navigateByUrl('/home/' + userData.UserID);
     }
   }
 
-  onGoogleLogin(): void {
-    this.loginService.googleLogin().subscribe((data) => {console.log(data)});
+  handleGoogleLoginResponse(rsp): void {
+    console.log(rsp);
+    this.goToUrl(rsp.redirect_uri);
   }
 
+
+  // login button
+  onLogin(): void {
+    // use user api: http://18.221.129.134:5011/users/<userid>
+    let postData = {
+      'email': this.email,
+      'password': this.password
+    }
+    // login
+    this.loginService.login(postData).subscribe(
+      (rsp) => {
+        this.handleLoginResponse(rsp);
+      }
+    )
+  }
+
+  onGoogleLogin(): void {
+    this.loginService.googleLogin().subscribe((rsp) => {
+      this.handleGoogleLoginResponse(rsp);
+    });
+  }
+
+  goToUrl(url: string): void {
+    this.document.location.href = url;
+  }
 
 }
