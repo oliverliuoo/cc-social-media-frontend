@@ -29,7 +29,7 @@ export class LoginServiceService {
       result = undefined;
     }
     else {
-      result = 'http://127.0.0.1:5011/check_login/';
+      result = 'https://127.0.0.1:5011/check_login/';
     }
     return result;
   }

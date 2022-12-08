@@ -60,7 +60,7 @@ export class SignupServiceService {
       result = undefined;
     }
     else {
-      result = 'http://127.0.0.1:5011/has-email/';
+      result = 'https://127.0.0.1:5011/has-email/';
     }
     return result;
   }
