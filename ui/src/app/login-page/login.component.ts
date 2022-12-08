@@ -35,30 +35,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // setStudentInfo(theStudent: User): void {
-  //   console.log('Students = \n' + JSON.stringify(theStudent, null, 2));
-  //   this.studentsInfo = [theStudent];
-  // }
-
-  setMessage(OutMessage: User): void {
-    console.log('setting message');
-    console.log(this.password);
-    // change to secure method
-    if (OutMessage.Password === this.password) {
-      // store userId in cookie
-      localStorage.setItem('userId', OutMessage.UserID)
-      // jump to the home page
-      this.router.navigateByUrl('/home/' + OutMessage.UserID).then(r => {
-        console.log(r); // true if navigation is successful
-      }, err => {
-        console.log(err); // when there's an error
-      });
-    }
-    else {
-      this.message = 'wrong password, try again';
-    }
-  }
-
   handleLoginResponse(rsp): void {
     let userData = rsp.data;
     let msg = rsp.msg;

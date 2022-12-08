@@ -1,6 +1,6 @@
-.all-feeds {
-  margin-left: 600px;
-}
+/*.all-feeds {*/
+/*  margin-left: 600px;*/
+/*}*/
 
 .user_name {
   margin-left: 20px;
@@ -8,3 +8,20 @@
   font-weight: bold;
 }
 
+.flex {
+  display: flex;
+}
+
+.post-feeds {
+  width: 800px;
+}
+
+.user-profile {
+  width: 500px;
+  justify-content: flex-end;
+}
+
+.upload {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}

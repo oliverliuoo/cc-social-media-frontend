@@ -12,6 +12,7 @@ export class HomePageComponent {
   userId: string;
   postDataList: Array<any> = [];
   postUrl: string;
+  logoutUrl = 'https://127.0.0.1:5011/logout';
   // postUrl = 'http://127.0.0.1:5000/post/hl3518/user';
   constructor(private http: HttpClient,
               private route: ActivatedRoute,
@@ -43,5 +44,13 @@ export class HomePageComponent {
         this.router.navigateByUrl('/login');
       }
     });
+  }
+
+  onLogOut(): void {
+    this.http.get(this.logoutUrl).subscribe((rsp) => {
+      localStorage.removeItem('userId');
+      this.userId = '';
+      this.router.navigateByUrl('/login');
+    })
   }
 }
