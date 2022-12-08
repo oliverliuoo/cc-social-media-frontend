@@ -28,6 +28,7 @@ import {HomePageComponent} from "./home-page/home-page.component";
 import { FollowingsComponent } from './followings/followings.component';
 import { FollowersComponent } from './followers/followers.component';
 import { LogoutComponent } from './logout/logout.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { LogoutComponent } from './logout/logout.component';
     FollowingsComponent,
     FollowersComponent,
     HomePageComponent,
-    LogoutComponent
+    LogoutComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

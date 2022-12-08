@@ -31,14 +31,6 @@ export class NavbarComponent implements OnInit {
     console.log(this.userId);
   }
 
-  onLogOut(): void {
-    this.http.get('https://127.0.0.1:5011/logout').subscribe((rsp) => {
-      localStorage.removeItem('userId');
-      this.userId = '';
-      this.router.navigateByUrl('login');
-    })
-  }
-
   onClickAllPosts(): void {
     this.userId = localStorage.getItem('userId');
   }
