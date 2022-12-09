@@ -31,6 +31,11 @@ import { LogoutComponent } from './logout/logout.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { GoogleLoginCallbackComponent } from './google-login-callback/google-login-callback.component';
 
+import {CommentComponent} from './comment/comment.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +55,8 @@ import { GoogleLoginCallbackComponent } from './google-login-callback/google-log
     HomePageComponent,
     LogoutComponent,
     UserProfileComponent,
-    GoogleLoginCallbackComponent
+    GoogleLoginCallbackComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +70,10 @@ import { GoogleLoginCallbackComponent } from './google-login-callback/google-log
     MatToolbarModule,
     MatButtonModule,
     AppRoutingModule,
-    MatDialogModule
+    MatDialogModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
     NavbarComponent
