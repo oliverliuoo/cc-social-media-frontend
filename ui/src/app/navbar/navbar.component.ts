@@ -31,7 +31,7 @@ export class NavbarComponent implements OnInit {
     console.log(this.userId);
   }
 
-  onClickAllPosts(): void {
+  onClickUpdateUserId(): void {
     this.userId = localStorage.getItem('userId');
   }
 

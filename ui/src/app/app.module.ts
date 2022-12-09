@@ -29,6 +29,7 @@ import { FollowingsComponent } from './followings/followings.component';
 import { FollowersComponent } from './followers/followers.component';
 import { LogoutComponent } from './logout/logout.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { GoogleLoginCallbackComponent } from './google-login-callback/google-login-callback.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     FollowersComponent,
     HomePageComponent,
     LogoutComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    GoogleLoginCallbackComponent
   ],
   imports: [
     BrowserModule,

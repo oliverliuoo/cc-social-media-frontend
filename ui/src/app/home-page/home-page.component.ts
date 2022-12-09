@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router'
+import {ActivatedRoute, Router} from '@angular/router'
 import {HttpClient} from "@angular/common/http";
 import {LoginServiceService} from "../login-page/log.service";
 
@@ -21,7 +21,10 @@ export class HomePageComponent {
   }
 
   ngOnInit(): void {
-    // check login first
+    this.checkLogin();
+  }
+
+  checkLogin() {
     this.loginService.checkLogin().subscribe((rsp) => {
       // @ts-ignore
       let userData = rsp.user;
@@ -44,13 +47,5 @@ export class HomePageComponent {
         this.router.navigateByUrl('/login');
       }
     });
-  }
-
-  onLogOut(): void {
-    this.http.get(this.logoutUrl).subscribe((rsp) => {
-      localStorage.removeItem('userId');
-      this.userId = '';
-      this.router.navigateByUrl('/login');
-    })
   }
 }

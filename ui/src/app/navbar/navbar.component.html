@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/home/{{userId}}">Home</a>
+  <a class="navbar-brand" href="/home/{{userId}}" (click)="onClickUpdateUserId()">Home</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -9,7 +9,7 @@
 <!--      <li class="nav-item active">-->
 <!--        <a class="nav-link" href="/home/{{userId}}">Home <span class="sr-only">(current)</span></a>-->
 <!--      </li>-->
-      <li class="nav-item" (click)="onClickAllPosts()">
+      <li class="nav-item" (click)="onClickUpdateUserId()">
         <a class="nav-link" href="/all-posts/{{userId}}">All Posts</a>
       </li>
     </ul>
