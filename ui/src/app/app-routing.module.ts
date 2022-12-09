@@ -8,9 +8,11 @@ import {FollowersComponent} from './followers/followers.component';
 import {FollowingsComponent} from './followings/followings.component';
 import {GoogleLoginCallbackComponent} from "./google-login-callback/google-login-callback.component";
 
+import {CommentComponent} from './comment/comment.component';
 
 const routes: Routes = [
   { path: 'all-posts/:user_id', component: AllCardsComponent },
+  { path: 'comments', component: CommentComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'home', redirectTo: '/login', pathMatch: 'full' },
   { path: 'all-posts', redirectTo: '/login', pathMatch: 'full' },
