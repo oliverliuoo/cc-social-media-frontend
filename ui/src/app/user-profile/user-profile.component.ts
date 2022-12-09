@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {Router} from "@angular/router";
+import {Component, Input} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 
 @Component({
@@ -8,11 +8,12 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent {
-  userName: string;
+  @Input('ngModel') userName: string;
   userId: string;
   logoutUrl = 'https://127.0.0.1:5011/logout';
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -24,7 +25,9 @@ export class UserProfileComponent {
   onLogOut(): void {
     this.http.get(this.logoutUrl).subscribe((rsp) => {
       localStorage.removeItem('userId');
+      localStorage.removeItem('userName');
       this.userId = '';
+      this.userName = ''
       this.router.navigateByUrl('/login');
     })
   }
