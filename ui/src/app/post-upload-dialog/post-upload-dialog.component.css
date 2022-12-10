@@ -1,4 +1,6 @@
-.number {
-  padding: 8px 16px;
-  padding-left: 0px;
+button {
+  width: 400px;
+  height: 40px;
+  background: aliceblue;
+  font-size: 16px;
 }

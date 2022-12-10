@@ -28,6 +28,13 @@ import {HomePageComponent} from "./home-page/home-page.component";
 import { FollowingsComponent } from './followings/followings.component';
 import { FollowersComponent } from './followers/followers.component';
 import { LogoutComponent } from './logout/logout.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { GoogleLoginCallbackComponent } from './google-login-callback/google-login-callback.component';
+
+import {CommentComponent} from './comment/comment.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -46,7 +53,10 @@ import { LogoutComponent } from './logout/logout.component';
     FollowingsComponent,
     FollowersComponent,
     HomePageComponent,
-    LogoutComponent
+    LogoutComponent,
+    UserProfileComponent,
+    GoogleLoginCallbackComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +70,10 @@ import { LogoutComponent } from './logout/logout.component';
     MatToolbarModule,
     MatButtonModule,
     AppRoutingModule,
-    MatDialogModule
+    MatDialogModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
     NavbarComponent
