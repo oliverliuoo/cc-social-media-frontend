@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router'
-import { FollowingServiceService } from './follow-service.service';
+import { MakeFollowingServiceService } from './follow-service.service';
 import {SignupServiceService} from "../signup-page/signup.service";
-import { FollowingsComponent } from '../followings/followings.component';
+import { FollowingServiceService } from '../followings/following-service.service';
+import { Following } from '../followings/following';
 
 @Component({
-  providers:[ FollowingsComponent ],
   selector: 'app-all-cards',
   templateUrl: './all-cards.component.html',
   styleUrls: ['./all-cards.component.css']
@@ -16,16 +16,14 @@ export class AllCardsComponent implements OnInit {
   loginId: string;
   postDataList: Array<any> = [];
   postUrl: string;
-  followService: FollowingServiceService;
-  followingComponent: FollowingsComponent;
+  followService: MakeFollowingServiceService;
 
   // postUrl = 'http://127.0.0.1:5000/post/hl3518/user';
   constructor(private http: HttpClient, private route: ActivatedRoute,
-              followingService: FollowingServiceService,
-              followingComponent: FollowingsComponent) {
+              followingService: MakeFollowingServiceService,
+              private followingComponent: FollowingServiceService) {
     this.followService = followingService;
     this.loginId = localStorage.getItem('userId');
-    this.followingComponent = followingComponent;
   }
 
   ngOnInit(): void {
@@ -42,6 +40,22 @@ export class AllCardsComponent implements OnInit {
     if (this.userId == this.loginId) {
       const follow_btn = document.getElementById('follow')
       follow_btn.style.display = 'none';
+    }
+
+    this.followingComponent.getFollowings(this.loginId)
+      .subscribe((data) => this.setFollowingList(data));
+  }
+
+  setFollowingList(theFollowing: Following): void {
+    // for (let i = 0; i < theFollowing.length; i++) {
+    // @ts-ignore
+    for (const item of theFollowing) {
+      console.log(item.FollowingID);
+      if (item.FollowingID == this.userId) {
+        // detected user has been followed
+        this.Follow();
+        break;
+      }
     }
   }
 
