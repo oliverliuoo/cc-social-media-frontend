@@ -61,6 +61,7 @@ export class PostPageComponent {
     }
     // TODO: implement comment service
     this.postPageService.postComment(commentData);
+    this.inputBox.nativeElement.value = '';
   }
 
   onTextBox(event): void {

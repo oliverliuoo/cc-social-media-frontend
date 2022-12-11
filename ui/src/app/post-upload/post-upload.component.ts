@@ -83,13 +83,13 @@ export class PostUploadComponent implements OnInit {
       // put photo to S3 bucket
       this.http.put(objS3PutUrl, this.photo).subscribe({
         next: data => {
-          console.log(data);
-          console.log('Successfully upload photo to cloud.');
           // insert record to backend database
           this.postUploadService.postData(postData).then((rsp) => {
             console.log(rsp);
+            console.log('Successfully upload photo to cloud.');
+            this.clearUp();
+            this.close();
           });
-          this.clearUp();
         },
         error: error => {
           console.error('Error met during uploading photo.', error);
@@ -103,7 +103,6 @@ export class PostUploadComponent implements OnInit {
     this.inputFile.nativeElement.value = '';
     this.textBox.nativeElement.value = '';
     this.imgSrc = this.placeHolderSrc;
-    close();
   }
 
   onRemovePhoto(): void {
