@@ -40,3 +40,7 @@ mat-expansion-panel-header {
   font-size: 13px;
   font-family: "Arial Black";
 }
+
+.post-time {
+  font-size: 12px;
+}
