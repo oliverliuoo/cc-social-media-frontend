@@ -35,6 +35,7 @@ import {CommentComponent} from './comment/comment.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import { PostPageComponent } from './post-page/post-page.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import {MatInputModule} from '@angular/material/input';
     LogoutComponent,
     UserProfileComponent,
     GoogleLoginCallbackComponent,
-    CommentComponent
+    CommentComponent,
+    PostPageComponent
   ],
   imports: [
     BrowserModule,

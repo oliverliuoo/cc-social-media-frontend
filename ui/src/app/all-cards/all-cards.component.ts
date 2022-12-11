@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router'
 import { MakeFollowingServiceService } from './follow-service.service';
-import {SignupServiceService} from "../signup-page/signup.service";
 import { FollowingServiceService } from '../followings/following-service.service';
 import { Following } from '../followings/following';
 
@@ -18,7 +17,6 @@ export class AllCardsComponent implements OnInit {
   postUrl: string;
   followService: MakeFollowingServiceService;
 
-  // postUrl = 'http://127.0.0.1:5000/post/hl3518/user';
   constructor(private http: HttpClient, private route: ActivatedRoute,
               followingService: MakeFollowingServiceService,
               private followingComponent: FollowingServiceService) {
@@ -27,10 +25,11 @@ export class AllCardsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userId = this.route.snapshot.paramMap.get('user_id')
+    this.userId = this.route.snapshot.paramMap.get('user_id');
+    // this.userId =  localStorage.getItem('userId');
     console.log(this.userId);
     this.postUrl = 'http://social-media-post.us-east-2.elasticbeanstalk.com/post/' + this.userId + '/user';
-    // fetch data from backend db
+    // fetch user's post from backend db
     this.http.get(this.postUrl).subscribe((rsp: any) => {
       for (const record of rsp.data) {
         this.postDataList.push(record);

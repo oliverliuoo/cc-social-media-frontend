@@ -1,0 +1,38 @@
+<div class="post">
+<!--  <p class="top-bar">{{authorName}}</p>-->
+  <mat-card class="mat-elevation-z4">
+
+        <mat-card-header>
+          <mat-card-title>{{authorName}}</mat-card-title>
+        </mat-card-header>
+
+    <img mat-card-image [src]="imgUrl" alt="...">
+
+    <mat-card-content>
+      <p class="post-text">
+        {{postText}}
+      </p>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            view comments here
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="comment-list">
+          <div class="comment" *ngFor="let data of commentList">
+            <span class="comment-user"> {{data.userName}} </span><span>: {{data.comment}} </span>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-card-content>
+
+
+
+    <div class="input-box">
+      <div><textarea placeholder="Add a comment" rows="1" cols="60" (keyup)="onTextBox($event)" #inputBox></textarea></div>
+      <div><button mat-button type="upload" (click)="onPostComment()">Post</button></div>
+    </div>
+
+  </mat-card>
+</div>
+
