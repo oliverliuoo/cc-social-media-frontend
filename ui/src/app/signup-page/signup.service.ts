@@ -28,7 +28,7 @@ export class SignupServiceService {
       /* This can change over time */
       result = undefined;
     } else {
-      result = 'http://127.0.0.1:5011/has-user/';
+      result = 'https://127.0.0.1:5011/has-user/';
     }
     return result;
   }
@@ -85,7 +85,7 @@ export class SignupServiceService {
       result = undefined;
     }
     else {
-      result = 'http://127.0.0.1:5011/new';
+      result = 'https://127.0.0.1:5011/new';
     }
     return result;
   }
@@ -102,4 +102,33 @@ export class SignupServiceService {
     // return result;
     return result;
   }
+
+  getEmailValidationServiceUrl(): string {
+    const theUrl = window.location.href;
+    let result: string;
+
+    // This is some seriously bad code.
+    // If you do this on a job interview, you did not learn this in my class.
+    if (theUrl.includes('amazonaws')) {
+      /* This can change over time */
+      result = undefined;
+    }
+    else {
+      result = 'https://127.0.0.1:5011/validate_email';
+    }
+    return result;
+  }
+
+  apiValidateEmail(email): Observable<any> {
+    console.log("check validation")
+    let theUrl: string;
+
+    theUrl = this.getEmailValidationServiceUrl();
+    console.log(theUrl);
+    const result = this.http.post(theUrl, {'email': email});
+    console.log(JSON.stringify(result));
+    // return result;
+    return result;
+  }
+
 }
