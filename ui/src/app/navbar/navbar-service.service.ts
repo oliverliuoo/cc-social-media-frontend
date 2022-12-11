@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Follower } from './follower';
 import { Observable } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class FollowerServiceService {
+export class NavbarServiceService {
 
-  followingsUrl: string;
+  searchUrl: string;
 
   constructor(private http: HttpClient) {
-    this.followingsUrl = this.getFollowingServiceUrl();
+    // console.log('The URL = ' + window.location.href);
+    // this.followings = undefined;
+    this.searchUrl = this.getSearchUrl();
   }
 
-  getFollowingServiceUrl(): string {
+  getSearchUrl(): string {
     const theUrl = window.location.href;
     let result: string;
 
@@ -26,18 +27,16 @@ export class FollowerServiceService {
       result = undefined;
     }
     else {
-      result = 'https://127.0.0.1:5011/followers/';
+      result = 'https://127.0.0.1:5011/all-post/';
     }
     return result;
   }
 
-
   /** GET heroes from the server */
-  getFollowings(userID): Observable<Follower> {
+  getSearch(userID): Observable<String> {
     let theUrl: string;
-
-    theUrl = this.followingsUrl + userID;
+    theUrl = this.searchUrl + userID;
     console.log('The URL = ' +  theUrl);
-    return this.http.get<Follower>(theUrl);
+    return this.http.get<String>(theUrl);
   }
 }
