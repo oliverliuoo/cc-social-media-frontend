@@ -9,12 +9,10 @@ import { Observable } from 'rxjs';
 })
 export class FollowingServiceService {
 
-  followings: Following[];
   followingsUrl: string;
 
   constructor(private http: HttpClient) {
-    // console.log('The URL = ' + window.location.href);
-    this.followings = undefined;
+
     this.followingsUrl = this.getFollowingServiceUrl();
   }
 
