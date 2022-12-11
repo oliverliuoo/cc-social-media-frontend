@@ -27,7 +27,6 @@ import {HomePageComponent} from "./home-page/home-page.component";
 
 import { FollowingsComponent } from './followings/followings.component';
 import { FollowersComponent } from './followers/followers.component';
-import { LogoutComponent } from './logout/logout.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { GoogleLoginCallbackComponent } from './google-login-callback/google-login-callback.component';
 
@@ -53,7 +52,6 @@ import { PostPageComponent } from './post-page/post-page.component';
     FollowingsComponent,
     FollowersComponent,
     HomePageComponent,
-    LogoutComponent,
     UserProfileComponent,
     GoogleLoginCallbackComponent,
     PostPageComponent

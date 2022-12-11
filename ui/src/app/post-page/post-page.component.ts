@@ -2,7 +2,7 @@ import {Component, ElementRef, Input, ViewChild} from '@angular/core';
 import {PostPageService} from "./post-page.service";
 import {HttpClient} from "@angular/common/http";
 import { ActivatedRoute } from '@angular/router'
-import {error} from "protractor";
+import {appProperties} from "../app.config";
 
 @Component({
   selector: 'app-post-page',
@@ -14,7 +14,7 @@ export class PostPageComponent {
   @Input() postId: string;
   @Input() authorId: string;
   @Input() authorName: string;
-  @Input() imgUrl: string = 'https://social-media-photo-bucket.s3.us-east-2.amazonaws.com/placeholder.png';
+  @Input() imgUrl: string = appProperties.photoPlaceHolderUrl;
   @Input() postTime: string;
   postText: string;
   inputText: string;

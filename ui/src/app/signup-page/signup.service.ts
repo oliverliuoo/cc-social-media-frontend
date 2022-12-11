@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {ColumbiaStudent, User} from './signup';
-import { ColumbiaStudentRsp } from "./signup";
 import { Observable } from 'rxjs';
 import {catchError} from 'rxjs/operators';
+import {appProperties} from "../app.config";
 
 
 @Injectable({
@@ -14,55 +14,21 @@ export class SignupServiceService {
   students: ColumbiaStudent[];
 
   constructor(private http: HttpClient) {
-    // console.log('The URL = ' + window.location.href);
-    this.students = undefined;
   }
 
   getSignupUsernameServiceUrl(): string {
-    const theUrl = window.location.href;
-    let result: string;
-
-    // This is some seriously bad code.
-    // If you do this on a job interview, you did not learn this in my class.
-    if (theUrl.includes('amazonaws')) {
-      /* This can change over time */
-      result = undefined;
-    } else {
-      result = 'https://127.0.0.1:5011/has-user/';
-    }
-    return result;
+    return appProperties.userServiceEndPoint + 'has-user/';
   }
-
-  /** GET heroes from the server */
-  // getStudents(studentUni): Observable<ColumbiaStudent> {
-  //   let theUrl: string;
-  //
-  //   theUrl = this.getSignupServiceUrl() + studentUni;
-  //   return this.http.get<ColumbiaStudent>(theUrl);
-  // }
 
   validUsername(username): Observable<string> {
     let theUrl: string;
 
     theUrl = this.getSignupUsernameServiceUrl() + username;
-    const result = this.http.get(theUrl, {responseType: 'text'});
-    return result;
+    return this.http.get(theUrl, {responseType: 'text'});
   }
 
   getSignupEmailServiceUrl(): string {
-    const theUrl = window.location.href;
-    let result: string;
-
-    // This is some seriously bad code.
-    // If you do this on a job interview, you did not learn this in my class.
-    if (theUrl.includes('amazonaws')) {
-      /* This can change over time */
-      result = undefined;
-    }
-    else {
-      result = 'https://127.0.0.1:5011/has-email/';
-    }
-    return result;
+    return appProperties.userServiceEndPoint + 'has-email/';
   }
 
   validEmail(email): Observable<string> {
@@ -75,49 +41,20 @@ export class SignupServiceService {
   }
 
   getInsertNewServiceUrl(): string {
-    const theUrl = window.location.href;
-    let result: string;
-
-    // This is some seriously bad code.
-    // If you do this on a job interview, you did not learn this in my class.
-    if (theUrl.includes('amazonaws')) {
-      /* This can change over time */
-      result = undefined;
-    }
-    else {
-      result = 'https://127.0.0.1:5011/new';
-    }
-    return result;
+    return appProperties.userServiceEndPoint + 'new';
   }
 
 
   insertNewUser(email, username, password): Observable<any> {
-    console.log("insert here")
     let theUrl: string;
 
     theUrl = this.getInsertNewServiceUrl();
-    console.log(theUrl);
-    const result = this.http.post(theUrl, {'username': username, 'email': email, 'password': password});
-    // console.log(JSON.stringify(result));
-    // return result;
-    return result;
+    return this.http.post(theUrl, {'username': username, 'email': email, 'password': password});
   }
 
 
   getEmailValidationServiceUrl(): string {
-    const theUrl = window.location.href;
-    let result: string;
-
-    // This is some seriously bad code.
-    // If you do this on a job interview, you did not learn this in my class.
-    if (theUrl.includes('amazonaws')) {
-      /* This can change over time */
-      result = undefined;
-    }
-    else {
-      result = 'https://127.0.0.1:5011/validate_email';
-    }
-    return result;
+    return appProperties.userServiceEndPoint + 'validate_email';
   }
 
   apiValidateEmail(email): Observable<any> {

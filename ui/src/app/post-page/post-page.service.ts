@@ -3,14 +3,15 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {PostRsp} from "./post";
 import {CommentRsp} from "./comment";
+import {appProperties} from "../app.config";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostPageService {
 
-  commentPath = 'http://127.0.0.1:5012/comment';
-  postPath = 'http://social-media-post.us-east-2.elasticbeanstalk.com/post/';
+  commentPath = appProperties.commentServiceEndPoint + 'comment';
+  postPath = appProperties.postServiceEndPoint + 'post/';
 
   constructor(private http: HttpClient) {
   }

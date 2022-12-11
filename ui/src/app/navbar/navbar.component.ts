@@ -52,7 +52,7 @@ export class NavbarComponent implements OnInit {
 
   checkUser(data): void {
     if (data.UserID == this.searchId) {
-      window.location.href = 'http://localhost:4200/all-posts/' + this.searchId;
+      window.location.href = '/all-posts/' + this.searchId;
     }
   }
 
