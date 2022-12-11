@@ -1,11 +1,12 @@
 export class Comment {
-  datetime: string;
+  date: string;
   post_id: string;
-  comment: string;
+  poster_id: string;
+  text: string;
   user_id: string;
-  userName: string;
+  username: string;
 }
 
-export class PostRsp {
+export class CommentRsp {
   data: Array<Comment>;
 }
