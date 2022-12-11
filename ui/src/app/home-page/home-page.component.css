@@ -1,0 +1,32 @@
+/*.all-feeds {*/
+/*  margin-left: 600px;*/
+/*}*/
+
+.user_name {
+  margin-left: 20px;
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.flex {
+  display: flex;
+}
+
+.post-feeds {
+  width: 800px;
+}
+
+.user-profile {
+  width: 400px;
+  justify-content: flex-end;
+}
+
+.upload {
+  margin-left: 100px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.post-page {
+  margin-top: 10px;
+}

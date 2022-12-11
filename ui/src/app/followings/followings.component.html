@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card" style="width: 60rem">
+        <div class="card-header">
+          <div class="row">
+            <div class="col">
+              <h3>Following Information</h3>
+            </div>
+          </div>
+        </div>
+        <p></p>
+        <button id="show_following" type="button" (click)="onLookup()" class="btn btn-primary">Show!</button>
+        <!-- You typed: <span *ngIf="artistName"> "{{ artistName }}" </span> -->
+        <p></p>
+        <table id='following_list' class="table table-striped">
+          <thead>
+          <tr>
+<!--            <th scope="col">UserID</th>-->
+            <th scope="col">{{numberOfFollowing}} followings of user {{userID}}</th>
+          </tr>
+          </thead>
+          <tbody >
+          <tr *ngFor="let id of followingList; index as i">
+            <td>{{ id }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+  </div>
+</div>

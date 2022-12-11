@@ -23,7 +23,19 @@ import {MatDialogModule} from '@angular/material/dialog';
 
 import {LoginComponent} from "./login-page/login.component";
 import {SignupComponent} from "./signup-page/signup.component";
-import {TempComponent} from "./temp-page/temp.component";
+import {HomePageComponent} from "./home-page/home-page.component";
+
+import { FollowingsComponent } from './followings/followings.component';
+import { FollowersComponent } from './followers/followers.component';
+import { LogoutComponent } from './logout/logout.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { GoogleLoginCallbackComponent } from './google-login-callback/google-login-callback.component';
+
+import {CommentComponent} from './comment/comment.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { PostPageComponent } from './post-page/post-page.component';
 
 @NgModule({
   declarations: [
@@ -38,8 +50,15 @@ import {TempComponent} from "./temp-page/temp.component";
     LoginComponent,
     // signup
     SignupComponent,
-    // temp home component
-    TempComponent,
+    // follow
+    FollowingsComponent,
+    FollowersComponent,
+    HomePageComponent,
+    LogoutComponent,
+    UserProfileComponent,
+    GoogleLoginCallbackComponent,
+    CommentComponent,
+    PostPageComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +72,10 @@ import {TempComponent} from "./temp-page/temp.component";
     MatToolbarModule,
     MatButtonModule,
     AppRoutingModule,
-    MatDialogModule
+    MatDialogModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
     NavbarComponent

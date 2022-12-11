@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForOf } from '@angular/common';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router'
+import { MakeFollowingServiceService } from './follow-service.service';
+import { FollowingServiceService } from '../followings/following-service.service';
+import { Following } from '../followings/following';
 
 @Component({
   selector: 'app-all-cards',
@@ -8,18 +11,86 @@ import {HttpClient, HttpParams} from '@angular/common/http';
   styleUrls: ['./all-cards.component.css']
 })
 export class AllCardsComponent implements OnInit {
+  userId: string;
+  loginId: string;
   postDataList: Array<any> = [];
-  postUrl = 'http://social-media-post.us-east-2.elasticbeanstalk.com/post/hl3518/user';
-  // postUrl = 'http://127.0.0.1:5000/post/hl3518/user';
-  constructor(private http: HttpClient) {
+  postUrl: string;
+  followService: MakeFollowingServiceService;
+
+  constructor(private http: HttpClient, private route: ActivatedRoute,
+              followingService: MakeFollowingServiceService,
+              private followingComponent: FollowingServiceService) {
+    this.followService = followingService;
+    this.loginId = localStorage.getItem('userId');
   }
 
   ngOnInit(): void {
-    // fetch data from backend db
+    this.userId = this.route.snapshot.paramMap.get('user_id');
+    // this.userId =  localStorage.getItem('userId');
+    console.log(this.userId);
+    this.postUrl = 'http://social-media-post.us-east-2.elasticbeanstalk.com/post/' + this.userId + '/user';
+    // fetch user's post from backend db
     this.http.get(this.postUrl).subscribe((rsp: any) => {
       for (const record of rsp.data) {
         this.postDataList.push(record);
       }
     });
+
+    if (this.userId == this.loginId) {
+      const follow_btn = document.getElementById('follow')
+      follow_btn.style.display = 'none';
+    }
+
+    this.followingComponent.getFollowings(this.loginId)
+      .subscribe((data) => this.setFollowingList(data));
+  }
+
+  setFollowingList(theFollowing: Following): void {
+    // for (let i = 0; i < theFollowing.length; i++) {
+    // @ts-ignore
+    for (const item of theFollowing) {
+      console.log(item.FollowingID);
+      if (item.FollowingID == this.userId) {
+        // detected user has been followed
+        this.Follow();
+        break;
+      }
+    }
+  }
+
+  Follow() {
+    const follow_btn = document.getElementById('follow')
+    follow_btn.innerText = 'Following';
+    follow_btn.style.background = '#cccccc';
+    follow_btn.setAttribute('disabled', '');
+
+    const unfollow_btn = document.getElementById('unfollow')
+    unfollow_btn.style.display = 'inline';
+
+    const unfollow_txt = document.getElementById('unfollow_text')
+    unfollow_txt.innerText = '';
+  }
+
+  unfollow() {
+    const follow_btn = document.getElementById('follow')
+    follow_btn.innerText = 'Follow';
+    follow_btn.style.background = '#007bff';
+    follow_btn.removeAttribute('disabled');
+
+    const unfollow_btn = document.getElementById('unfollow')
+    unfollow_btn.style.display = 'none';
+
+    const unfollow_txt = document.getElementById('unfollow_text')
+    unfollow_txt.innerText = 'Unfollowed ' + this.userId + "!";
+  }
+
+  onFollow(): void {
+    this.followService.insertNewFollowing(this.loginId, this.userId).subscribe((data) => {console.log(data)});
+    this.Follow()
+  }
+
+  onUnfollow(): void {
+    this.followService.deleteAndUnfollow(this.loginId, this.userId).subscribe((data) => {console.log(data)});
+    this.unfollow()
   }
 }

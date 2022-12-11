@@ -1,0 +1,33 @@
+<!--<div class="user_name">{{userId}}</div>-->
+<!--<div style="display: flex; justify-content: left;">-->
+<!--  <div><a class="nav-link" href="./followers">Followers</a ></div>-->
+<!--  &lt;!&ndash;  <div class="number" id="numberOfFollowers">2</div>&ndash;&gt;-->
+<!--</div>-->
+<!--<div style="display: flex; justify-content: left;">-->
+<!--  <a class="nav-link" href="./followings">Followings</a >-->
+<!--  &lt;!&ndash;  <span class="number"  id="numberOfFollowings">2</span>&ndash;&gt;-->
+<!--</div>-->
+<!--<button class="btn btn-outline-primary my-3 my-sm-0 mr-3" (click)="onLogOut()">Log Out</button>-->
+<!--<app-post-upload-dialog></app-post-upload-dialog>-->
+<!--<div class="all-feeds">-->
+<!--  <app-card *ngFor="let data of postDataList" [imgSrc]="data.photo_url" [postText]="data.post_text"></app-card>-->
+<!--</div>-->
+<div class="container">
+  <div class="flex">
+    <div class="post-feeds">
+      <div class="upload">
+        <app-post-upload-dialog></app-post-upload-dialog>
+      </div>
+      <div class="post-page" *ngFor="let data of postDataList">
+        <app-post-page [postId]="data.post_id"
+                       [authorId]="data.user_id"
+                       [authorName]="data.user_id"
+                       [imgUrl]="data.photo_url"></app-post-page>
+      </div>
+    </div>
+    <div class="user-profile">
+      <app-user-profile></app-user-profile>
+    </div>
+  </div>
+</div>
+
