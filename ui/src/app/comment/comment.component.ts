@@ -1,7 +1,7 @@
 // tslint:disable-next-line:max-line-length
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { CommentService } from './comment.service';
+import { PostPageService } from '../post-page/post-page.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
 import {HttpClient} from '@angular/common/http';
@@ -16,10 +16,9 @@ import { CommentModel } from './comment.model';
 
 export class CommentComponent implements OnInit {
 
-
     // tslint:disable-next-line:max-line-length
 
-    constructor( commentService: CommentService,
+    constructor( commentService: PostPageService,
                  private http: HttpClient,
     ) {
       this.commentService = commentService;
@@ -34,7 +33,7 @@ export class CommentComponent implements OnInit {
     commentUrl = 'http://127.0.0.1:5011/comment/';
     imgSrc: string;
     postUploadService: PostUploadService;
-    commentService: CommentService;
+    commentService: PostPageService;
     content: string;
     placeHolderSrc = 'https://social-media-photo-bucket.s3.us-east-2.amazonaws.com/placeholder.png';
     commentText: string;
