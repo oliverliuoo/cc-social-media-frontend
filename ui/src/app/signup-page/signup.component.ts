@@ -5,6 +5,7 @@ import {ColumbiaStudent} from './signup';
 import {Router} from "@angular/router";
 import { timer } from 'rxjs';
 
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -88,7 +89,7 @@ export class SignupComponent implements OnInit {
       }))
   }
 
-
+  
   onSignUp(): void {
     // check all box are not empty
     if (this.email && this.username && this.password) {

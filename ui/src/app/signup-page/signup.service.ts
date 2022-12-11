@@ -103,6 +103,7 @@ export class SignupServiceService {
     return result;
   }
 
+
   getEmailValidationServiceUrl(): string {
     const theUrl = window.location.href;
     let result: string;
@@ -130,4 +131,5 @@ export class SignupServiceService {
     // return result;
     return result;
   }
+
 }
