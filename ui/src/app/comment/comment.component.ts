@@ -7,8 +7,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import {PostUploadService} from '../post-upload/post-upload.service';
-import { CommentModel } from './comment.model';
+
 @Component({selector: 'app-comment',
     templateUrl: './comment.component.html',
     styleUrls: ['./comment.component.css']
@@ -39,7 +38,6 @@ export class CommentComponent implements OnInit {
     post_id = 'd711721f-c2c0-4240-a80e-99b86a7e176b';
   poster_id = 'hl3518';
   username = 'username';
-  comment: CommentModel;
 
 
 
