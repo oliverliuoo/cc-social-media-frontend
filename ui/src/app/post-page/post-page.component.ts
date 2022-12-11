@@ -30,7 +30,7 @@ export class PostPageComponent {
     this.commentList = [];
     console.log(this.postId);
     // if postId not passed in, get postId using router
-    if (this.postId === null) {
+    if (this.postId === undefined) {
       this.postId = this.routes.snapshot.paramMap.get('post_id');
     }
     // get post data
