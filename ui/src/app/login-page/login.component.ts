@@ -59,7 +59,6 @@ export class LoginComponent implements OnInit {
 
   // login button
   onLogin(): void {
-    // use user api: http://18.221.129.134:5011/users/<userid>
     let postData = {
       'email': this.email,
       'password': this.password

@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
+import {appProperties} from "../app.config";
 
 @Component({
   selector: 'app-user-profile',
@@ -11,7 +12,7 @@ export class UserProfileComponent {
   @Input('ngModel') userName: string;
   @Input('ngModel') userId: string;
   @Input('ngModel') email: string;
-  logoutUrl = 'https://127.0.0.1:5011/logout';
+  logoutUrl = appProperties.userServiceEndPoint + 'logout';
 
   constructor(private http: HttpClient,
               private router: Router) {
