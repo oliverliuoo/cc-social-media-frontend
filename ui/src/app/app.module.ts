@@ -31,7 +31,6 @@ import { LogoutComponent } from './logout/logout.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { GoogleLoginCallbackComponent } from './google-login-callback/google-login-callback.component';
 
-import {CommentComponent} from './comment/comment.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -57,7 +56,6 @@ import { PostPageComponent } from './post-page/post-page.component';
     LogoutComponent,
     UserProfileComponent,
     GoogleLoginCallbackComponent,
-    CommentComponent,
     PostPageComponent
   ],
   imports: [

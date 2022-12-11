@@ -2,6 +2,7 @@ import {Component, ElementRef, Input, ViewChild} from '@angular/core';
 import {PostPageService} from "./post-page.service";
 import {HttpClient} from "@angular/common/http";
 import { ActivatedRoute } from '@angular/router'
+import {error} from "protractor";
 
 @Component({
   selector: 'app-post-page',
@@ -25,6 +26,8 @@ export class PostPageComponent {
   }
 
   ngOnInit(): void {
+    this.commentList = [];
+    console.log(this.postId);
     // if postId not passed in, get postId using router
     if (this.postId === null) {
       this.postId = this.routes.snapshot.paramMap.get('post_id');
@@ -40,27 +43,42 @@ export class PostPageComponent {
         this.authorName = this.authorId;
       }
       // call comment service get comment data
-      this.commentList = [{'userName': 'mockUser1', 'comment': 'not so good!!'},
-        {'userName': 'mockUser2', 'comment': 'so fucking good!!'}];
+      // this.commentList = [{'userName': 'mockUser1', 'comment': 'not so good!!'},
+      //   {'userName': 'mockUser2', 'comment': 'so fucking good!!'}];
+    });
+    // get comment list
+    this.postPageService.getCommentsByPostId(this.postId).subscribe(commentRsp => {
+      for (let comment of commentRsp.data) {
+        this.commentList.push({
+          'userName': comment.username,
+          'comment': comment.text
+        })
+      }
     });
   }
 
   onPostComment(): void {
+    if (this.inputText === undefined || null || '') {
+      return;
+    }
     this.commentList.push(
       {'userName': localStorage.getItem('userName'), 'comment': this.inputText}
-    )
+    );
     // get userId and userName
     let userId = localStorage.getItem('userId');
     let userName = localStorage.getItem('userName');
     // form comment data
     let commentData = {
-      'userId': userId,
-      'userName': userName,
-      'postId': this.postId,
-      'comment': this.inputText
+      'user_id': userId,
+      'username': userName,
+      'post_id': this.postId,
+      'text': this.inputText,
+      'poster_id': this.authorId,
     }
     // TODO: implement comment service
-    this.postPageService.postComment(commentData);
+    this.postPageService.postComment(commentData).subscribe((rsp) => {
+      console.log(rsp);
+    });
     this.inputBox.nativeElement.value = '';
   }
 
