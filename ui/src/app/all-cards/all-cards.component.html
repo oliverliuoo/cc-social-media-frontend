@@ -2,7 +2,7 @@
   All Posts
 </mat-toolbar>
 <div>
-  <span class="user_name">You are viewing: {{userId}}</span>
+  <span class="user_name" *ngIf="showViewingWhom">You are viewing posts of {{userName}}</span>
   <div>
     <button type="button" (click)="onFollow()" class="btn btn-primary my_button" id="follow">Follow</button>
     <button type="button" (click)="onUnfollow()" class="btn btn-primary my_button" id="unfollow">Unfollow</button>

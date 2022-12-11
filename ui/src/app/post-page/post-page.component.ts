@@ -15,6 +15,7 @@ export class PostPageComponent {
   @Input() authorId: string;
   @Input() authorName: string;
   @Input() imgUrl: string = 'https://social-media-photo-bucket.s3.us-east-2.amazonaws.com/placeholder.png';
+  @Input() postTime: string;
   postText: string;
   inputText: string;
   @ViewChild('inputBox') inputBox: ElementRef;
@@ -39,6 +40,7 @@ export class PostPageComponent {
       this.postText = postData.post_text;
       this.authorId = postData.user_id;
       this.authorName = postData.user_name;
+      this.postTime = postData.time_stamp;
       if (this.authorName === null || undefined) {
         this.authorName = this.authorId;
       }
