@@ -36,6 +36,7 @@ export class AllCardsComponent implements OnInit {
     // fetch user's post from backend db
     this.http.get(this.postUrl).subscribe((rsp: any) => {
       for (const record of rsp.data) {
+        console.log(record);
         this.postDataList.push(record);
       }
     });

@@ -10,5 +10,8 @@
   </div>
 </div>
 <div class="all-cards">
-  <app-card *ngFor="let data of postDataList" [imgSrc]="data.photo_url" [postText]="data.post_text"></app-card>
+  <app-card *ngFor="let data of postDataList"
+            [imgSrc]="data.photo_url"
+            [postText]="data.post_text"
+            [postId]="data.post_id"></app-card>
 </div>

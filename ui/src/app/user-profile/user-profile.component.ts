@@ -9,7 +9,8 @@ import {HttpClient} from "@angular/common/http";
 })
 export class UserProfileComponent {
   @Input('ngModel') userName: string;
-  userId: string;
+  @Input('ngModel') userId: string;
+  @Input('ngModel') email: string;
   logoutUrl = 'https://127.0.0.1:5011/logout';
 
   constructor(private http: HttpClient,
@@ -19,6 +20,7 @@ export class UserProfileComponent {
   ngOnInit(): void {
     this.userId = localStorage.getItem('userId');
     this.userName = localStorage.getItem('userName');
+    this.email = localStorage.getItem('userEmail');
   }
 
 
