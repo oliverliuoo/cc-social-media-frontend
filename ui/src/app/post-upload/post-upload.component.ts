@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import {Router} from "@angular/router";
 
 import {PostUploadService} from './post-upload.service';
@@ -26,7 +26,6 @@ export class PostUploadComponent implements OnInit {
   imgSrc: string;
   postUploadService: PostUploadService;
   postText: string;
-  userId: string;
   placeHolderSrc = 'https://social-media-photo-bucket.s3.us-east-2.amazonaws.com/placeholder.png';
 
   @ViewChild('textBox') textBox: ElementRef;
@@ -50,8 +49,9 @@ export class PostUploadComponent implements OnInit {
   }
 
   async onUpload(): Promise<void> {
-    this.userId = localStorage.getItem('userId');
-    if (this.userId === '') {
+    let userId = localStorage.getItem('userId');
+    let userName = localStorage.getItem('userName');
+    if (userId === '') {
       alert('please login first.')
       //this.uploadDialog.close();
       await this.router.navigateByUrl('login');
@@ -71,10 +71,11 @@ export class PostUploadComponent implements OnInit {
     // get pre-signed s3 put url
     this.postUploadService.getS3Url(newPostId).then(objS3PutUrl => {
       const objS3GetUrl = objS3PutUrl.split('?')[0];
-      console.log(objS3GetUrl);
+      // console.log(objS3GetUrl);
       // post payload
       const postData = {
-        user_id: this.userId,
+        user_id: userId,
+        user_name: userName,
         post_id: newPostId,
         photo_url: objS3GetUrl,
         post_text: this.postText
@@ -82,13 +83,13 @@ export class PostUploadComponent implements OnInit {
       // put photo to S3 bucket
       this.http.put(objS3PutUrl, this.photo).subscribe({
         next: data => {
-          console.log(data);
-          console.log('Successfully upload photo to cloud.');
           // insert record to backend database
           this.postUploadService.postData(postData).then((rsp) => {
             console.log(rsp);
+            console.log('Successfully upload photo to cloud.');
+            this.clearUp();
+            this.close();
           });
-          this.clearUp();
         },
         error: error => {
           console.error('Error met during uploading photo.', error);
@@ -102,7 +103,6 @@ export class PostUploadComponent implements OnInit {
     this.inputFile.nativeElement.value = '';
     this.textBox.nativeElement.value = '';
     this.imgSrc = this.placeHolderSrc;
-    close();
   }
 
   onRemovePhoto(): void {

@@ -9,6 +9,7 @@ import {FollowingsComponent} from './followings/followings.component';
 import {GoogleLoginCallbackComponent} from "./google-login-callback/google-login-callback.component";
 
 import {CommentComponent} from './comment/comment.component';
+import {PostPageComponent} from "./post-page/post-page.component";
 
 const routes: Routes = [
   { path: 'all-posts/:user_id', component: AllCardsComponent },
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent},
   { path: 'login/callback', component: GoogleLoginCallbackComponent},
   { path: 'followers', component: FollowersComponent },
-  { path: 'followings', component: FollowingsComponent }
+  { path: 'followings', component: FollowingsComponent },
+  { path: 'post-page/:post_id', component: PostPageComponent}
 ];
 
 @NgModule({

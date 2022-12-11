@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router'
 import {HttpClient} from "@angular/common/http";
 import {LoginServiceService} from "../login-page/log.service";
+import { Post, PostRsp } from "../post-page/post";
 
 @Component({
   selector: 'app-home-page',
@@ -10,7 +11,7 @@ import {LoginServiceService} from "../login-page/log.service";
 })
 export class HomePageComponent {
   userId: string;
-  postDataList: Array<any> = [];
+  postDataList: Array<Post> = [];
   postUrl: string;
   logoutUrl = 'https://127.0.0.1:5011/logout';
   // postUrl = 'http://127.0.0.1:5000/post/hl3518/user';
@@ -37,7 +38,7 @@ export class HomePageComponent {
         this.userId = userData['UserID'];
         this.postUrl = 'http://social-media-post.us-east-2.elasticbeanstalk.com/post/' + this.userId + '/user';
         // fetch data from backend db
-        this.http.get(this.postUrl).subscribe((rsp: any) => {
+        this.http.get<PostRsp>(this.postUrl).subscribe((rsp: any) => {
           for (const record of rsp.data) {
             this.postDataList.push(record);
           }
