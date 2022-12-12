@@ -20,10 +20,7 @@ export class GoogleLoginCallbackComponent {
   }
 
   ngOnInit(): void {
-  }
-
-  loginRedirect() {
-    this.loginService.checkLogin().subscribe((rsp) => {
+      this.loginService.checkLogin().subscribe((rsp) => {
       // @ts-ignore
       let userData = rsp.user;
       if (userData !== null) {
