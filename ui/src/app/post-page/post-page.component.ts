@@ -4,7 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router'
 import {appProperties} from "../app.config";
-import {DeletePostDialogComponent} from "../delete-post-dialog/delete-post-dialog.component";
+import {DeletePostDialogComponent} from '../delete-post-dialog/delete-post-dialog.component';
 
 @Component({
   selector: 'app-post-page',
