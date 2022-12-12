@@ -14,6 +14,7 @@
       </p>
       <div class="post-time">
         <p> Posted at {{postTime}} </p>
+        <button class="delete-button" mat-button (click)="openDeleteDialog()" *ngIf="showDelete">delete</button>
       </div>
       <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header>
