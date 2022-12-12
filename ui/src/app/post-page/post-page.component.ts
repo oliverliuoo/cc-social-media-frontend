@@ -1,7 +1,7 @@
 import {Component, ElementRef, Input, ViewChild} from '@angular/core';
 import {PostPageService} from "./post-page.service";
 import {HttpClient} from "@angular/common/http";
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialog} from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router'
 import {appProperties} from "../app.config";
 import {DeletePostDialogComponent} from '../delete-post-dialog/delete-post-dialog.component';
