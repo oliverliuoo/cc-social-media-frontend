@@ -35,10 +35,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { PostPageComponent } from './post-page/post-page.component';
 import { DeletePostDialogComponent } from './delete-post-dialog/delete-post-dialog.component';
-<<<<<<< HEAD
-=======
 import {MatIconModule} from "@angular/material/icon";
->>>>>>> 02ca64b (Add delete post function. (#23))
+
 
 @NgModule({
   declarations: [
