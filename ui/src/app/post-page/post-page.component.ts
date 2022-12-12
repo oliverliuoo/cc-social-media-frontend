@@ -1,8 +1,10 @@
 import {Component, ElementRef, Input, ViewChild} from '@angular/core';
 import {PostPageService} from "./post-page.service";
 import {HttpClient} from "@angular/common/http";
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router'
 import {appProperties} from "../app.config";
+import {DeletePostDialogComponent} from "../delete-post-dialog/delete-post-dialog.component";
 
 @Component({
   selector: 'app-post-page',
@@ -18,17 +20,18 @@ export class PostPageComponent {
   @Input() postTime: string;
   postText: string;
   inputText: string;
+  showDelete: boolean;
   @ViewChild('inputBox') inputBox: ElementRef;
   commentList: Array<Object>;
 
   constructor(private http: HttpClient,
               private postPageService: PostPageService,
-              private routes: ActivatedRoute) {
+              private routes: ActivatedRoute,
+              private dialogModel: MatDialog) {
   }
 
   ngOnInit(): void {
     this.commentList = [];
-    console.log(this.postId);
     // if postId not passed in, get postId using router
     if (this.postId === undefined) {
       this.postId = this.routes.snapshot.paramMap.get('post_id');
@@ -43,6 +46,10 @@ export class PostPageComponent {
       this.postTime = postData.time_stamp;
       if (this.authorName === null || undefined) {
         this.authorName = this.authorId;
+      }
+      if (this.authorId === localStorage.getItem('userId')) {
+        // allow owner to delete post
+        this.showDelete = true;
       }
       // call comment service get comment data
       // this.commentList = [{'userName': 'mockUser1', 'comment': 'not so good!!'},
@@ -88,6 +95,12 @@ export class PostPageComponent {
     this.inputText = event.target.value;
   }
 
+  openDeleteDialog(): void {
+    console.log(this.postId);
+    this.dialogModel.open(DeletePostDialogComponent, {
+      data: { 'postId': this.postId }
+    });
+  }
 }
 
 

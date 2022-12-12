@@ -88,6 +88,8 @@ export class PostUploadComponent implements OnInit {
           this.postUploadService.postData(postData).then((rsp) => {
             console.log(rsp);
             console.log('Successfully upload photo to cloud.');
+            this.router.navigateByUrl('/home/' + localStorage.getItem('userId'));
+            window.location.reload();
             this.clearUp();
             this.close();
           });
