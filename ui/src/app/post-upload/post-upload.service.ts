@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {appProperties} from "../app.config";
 
 
 @Injectable({
@@ -13,7 +14,7 @@ export class PostUploadService {
   pathGenId: string;
 
   constructor(private http: HttpClient) {
-    this.hostName = 'http://social-media-post.us-east-2.elasticbeanstalk.com';
+    this.hostName = appProperties.postServiceEndPoint;
     // this.hostName = 'http://127.0.0.1:5000';
     this.pathGetS3Url = '/post/s3url';
     this.pathPostUpload = '/post';

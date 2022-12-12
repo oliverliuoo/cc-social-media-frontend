@@ -5,6 +5,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import {Router} from "@angular/router";
 
 import {PostUploadService} from './post-upload.service';
+import {appProperties} from "../app.config";
 
 
 @Component({
@@ -26,7 +27,7 @@ export class PostUploadComponent implements OnInit {
   imgSrc: string;
   postUploadService: PostUploadService;
   postText: string;
-  placeHolderSrc = 'https://social-media-photo-bucket.s3.us-east-2.amazonaws.com/placeholder.png';
+  placeHolderSrc = appProperties.photoPlaceHolderUrl;
 
   @ViewChild('textBox') textBox: ElementRef;
   @ViewChild('inputFile') inputFile: ElementRef;

@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router'
 import {HttpClient} from "@angular/common/http";
 import {LoginServiceService} from "../login-page/log.service";
 import { Post, PostRsp } from "../post-page/post";
+import {appProperties} from "../app.config";
 
 @Component({
   selector: 'app-home-page',
@@ -10,11 +11,11 @@ import { Post, PostRsp } from "../post-page/post";
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent {
+
   userId: string;
   postDataList: Array<Post> = [];
-  postUrl: string;
-  logoutUrl = 'https://127.0.0.1:5011/logout';
-  // postUrl = 'http://127.0.0.1:5000/post/hl3518/user';
+  logoutUrl = appProperties.userServiceEndPoint + 'logout';
+
   constructor(private http: HttpClient,
               private route: ActivatedRoute,
               private router: Router,
@@ -36,9 +37,9 @@ export class HomePageComponent {
         localStorage.setItem('userEmail', userData.Email);
         // has userData, login successfully
         this.userId = userData['UserID'];
-        this.postUrl = 'http://social-media-post.us-east-2.elasticbeanstalk.com/post/' + this.userId + '/user';
+        let feedGetByUserUrl = appProperties.postServiceEndPoint + 'post/' + this.userId + '/user';
         // fetch data from backend db
-        this.http.get<PostRsp>(this.postUrl).subscribe((rsp: any) => {
+        this.http.get<PostRsp>(feedGetByUserUrl).subscribe((rsp: any) => {
           for (const record of rsp.data) {
             this.postDataList.push(record);
           }

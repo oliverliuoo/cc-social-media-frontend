@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router'
 import { MakeFollowingServiceService } from './follow-service.service';
 import { FollowingServiceService } from '../followings/following-service.service';
 import { Following } from '../followings/following';
+import {User} from "../login-page/log";
+import {appProperties} from "../app.config";
 
 @Component({
   selector: 'app-all-cards',
@@ -12,10 +14,11 @@ import { Following } from '../followings/following';
 })
 export class AllCardsComponent implements OnInit {
   userId: string;
+  userName: string;
   loginId: string;
   postDataList: Array<any> = [];
-  postUrl: string;
   followService: MakeFollowingServiceService;
+  showViewingWhom: boolean = true;
 
   constructor(private http: HttpClient, private route: ActivatedRoute,
               followingService: MakeFollowingServiceService,
@@ -28,17 +31,24 @@ export class AllCardsComponent implements OnInit {
     this.userId = this.route.snapshot.paramMap.get('user_id');
     // this.userId =  localStorage.getItem('userId');
     console.log(this.userId);
-    this.postUrl = 'http://social-media-post.us-east-2.elasticbeanstalk.com/post/' + this.userId + '/user';
+    let postGetByUserUrl = appProperties.postServiceEndPoint + 'post/' + this.userId + '/user';
     // fetch user's post from backend db
-    this.http.get(this.postUrl).subscribe((rsp: any) => {
+    this.http.get(postGetByUserUrl).subscribe((rsp: any) => {
       for (const record of rsp.data) {
+        console.log(record);
         this.postDataList.push(record);
       }
     });
-
+    // get this user's info
+    let userGetUrl = appProperties.userServiceEndPoint + "users/" + this.userId;
+    this.http.get<User>(userGetUrl).subscribe((user) => {
+      this.userName = user.Username;
+    });
+    // do not show follow and unfollow on your on page
     if (this.userId == this.loginId) {
       const follow_btn = document.getElementById('follow')
       follow_btn.style.display = 'none';
+      this.showViewingWhom = false;
     }
 
     this.followingComponent.getFollowings(this.loginId)

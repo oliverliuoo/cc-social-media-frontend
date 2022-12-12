@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Follower } from './follower';
 import { Observable } from 'rxjs';
+import {appProperties} from "../app.config";
 
 
 @Injectable({
@@ -16,19 +17,7 @@ export class FollowerServiceService {
   }
 
   getFollowingServiceUrl(): string {
-    const theUrl = window.location.href;
-    let result: string;
-
-    // This is some seriously bad code.
-    // If you do this on a job interview, you did not learn this in my class.
-    if (theUrl.includes('amazonaws')) {
-      /* This can change over time */
-      result = undefined;
-    }
-    else {
-      result = 'https://127.0.0.1:5011/followers/';
-    }
-    return result;
+    return appProperties.userServiceEndPoint + 'follow';
   }
 
 
