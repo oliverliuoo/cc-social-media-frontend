@@ -66,11 +66,12 @@ export class PostUploadComponent implements OnInit {
     // synchronous http request
     // get a new generated post id
     let newPostId = null;
-    await this.postUploadService.getPostId().then(value => {
-      newPostId = value;
+    await this.postUploadService.getPostId().then(rsp => {
+      newPostId = rsp.id;
     });
     // get pre-signed s3 put url
-    this.postUploadService.getS3Url(newPostId).then(objS3PutUrl => {
+    this.postUploadService.getS3Url(newPostId).then(rsp => {
+      const objS3PutUrl = rsp.s3Url;
       const objS3GetUrl = objS3PutUrl.split('?')[0];
       // console.log(objS3GetUrl);
       // post payload

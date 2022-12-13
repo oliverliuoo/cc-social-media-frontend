@@ -1,4 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {DeletePostDialogComponent} from "../delete-post-dialog/delete-post-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 
 
 @Component({
@@ -8,7 +10,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class CardComponent implements OnInit {
 
-  constructor() { }
+  constructor(  private dialogModel: MatDialog) { }
   @Input() postText: string;
   @Input() imgSrc: string | undefined;
   @Input() postId: string;
@@ -21,5 +23,12 @@ export class CardComponent implements OnInit {
       return;
     }
     window.location.href = '/post-page/' + this.postId;
+  }
+
+  openDeleteDialog(): void {
+    console.log(this.postId);
+    this.dialogModel.open(DeletePostDialogComponent, {
+      data: { 'postId': this.postId }
+    });
   }
 }

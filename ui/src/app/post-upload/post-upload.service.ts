@@ -21,20 +21,20 @@ export class PostUploadService {
     this.pathGenId = '/post/generate_id';
   }
 
-  getPostId(): Promise<string> {
+  getPostId(): Promise<any> {
     const url = this.hostName + this.pathGenId;
-    return this.http.get(url, {responseType: 'text'}).toPromise();
+    return this.http.get(url).toPromise();
   }
 
-  getS3Url(objectName: string): Promise<string> {
+  getS3Url(objectName: string): Promise<any> {
     const url = this.hostName + this.pathGetS3Url;
     let queryParams = new HttpParams();
     queryParams = queryParams.append('object_name', objectName);
-    return this.http.get(url, {params: queryParams, responseType: 'text'}).toPromise();
+    return this.http.get(url, {params: queryParams}).toPromise();
   }
 
-  postData(data): Promise<string> {
+  postData(data): Promise<any> {
     const url = this.hostName + this.pathPostUpload;
-    return this.http.post(url, data, {responseType: 'text'}).toPromise();
+    return this.http.post(url, data).toPromise();
   }
 }
