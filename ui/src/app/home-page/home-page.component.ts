@@ -29,12 +29,11 @@ export class HomePageComponent {
   }
 
   ngOnInit(): void {
-
+    this.pages = [];
     this.page = 0;
     this.perPage =1;
     this.checkLogin();
     // Initialize the pages array
-    this.pages = [];
 
     // Calculate the total number of pages
 

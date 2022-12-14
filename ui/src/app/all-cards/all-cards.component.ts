@@ -19,6 +19,11 @@ export class AllCardsComponent implements OnInit {
   postDataList: Array<any> = [];
   followService: MakeFollowingServiceService;
   showViewingWhom: boolean = true;
+  page:number;
+  pages:Array<number>;
+  perPage:number;
+  Datalistshow:Array<any> = [];
+  total_items : number;
 
   constructor(private http: HttpClient, private route: ActivatedRoute,
               followingService: MakeFollowingServiceService,
@@ -28,6 +33,9 @@ export class AllCardsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.pages = [];
+    this.page = 0;
+    this.perPage =12;
     this.userId = this.route.snapshot.paramMap.get('user_id');
     // this.userId =  localStorage.getItem('userId');
     console.log(this.userId);
@@ -37,6 +45,14 @@ export class AllCardsComponent implements OnInit {
       for (const record of rsp.data) {
         console.log(record);
         this.postDataList.push(record);
+      }
+      this.Datalistshow = this.postDataList.slice(0,this.perPage);
+      this.total_items = this.postDataList.length;
+      let totalPages = Math.ceil(this.total_items / this.perPage);
+      // Generate the array of page numbers
+      for (let i = 1; i <= totalPages; i++) {
+        this.pages.push(i);
+        console.log(this.pages)
       }
     });
     // get this user's info
@@ -102,5 +118,8 @@ export class AllCardsComponent implements OnInit {
   onUnfollow(): void {
     this.followService.deleteAndUnfollow(this.loginId, this.userId).subscribe((data) => {console.log(data)});
     this.unfollow()
+  }
+  nextPage(): void{
+    this.Datalistshow = this.postDataList.slice(this.page-1,(this.page-1)+this.perPage);
   }
 }

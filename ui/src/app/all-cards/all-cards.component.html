@@ -13,5 +13,18 @@
   <app-card *ngFor="let data of postDataList"
             [imgSrc]="data.photo_url"
             [postText]="data.post_text"
-            [postId]="data.post_id"></app-card>
+            [postId]="data.post_id">
+
+  </app-card>
+
+</div>
+
+<div id="paginationForm" style="margin-left: 30px;margin-top: 20px">
+  <form>
+    <label>Page:</label>
+    <select [(ngModel)]="page" name="page">
+      <option *ngFor="let p of pages" [value]="p">{{ p }}</option>
+    </select>
+    <button id="nextPageButton" (click)="nextPage()">Next</button>
+  </form>
 </div>
