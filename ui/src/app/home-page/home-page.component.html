@@ -18,16 +18,28 @@
       <div class="upload">
         <app-post-upload-dialog></app-post-upload-dialog>
       </div>
-      <div class="post-page" *ngFor="let data of postDataList">
+      <div class="post-page" *ngFor="let data of Datalistshow">
         <app-post-page [postId]="data.post_id"
                        [authorId]="data.user_id"
                        [authorName]="data.user_id"
                        [imgUrl]="data.photo_url"></app-post-page>
       </div>
     </div>
+
     <div class="user-profile">
       <app-user-profile></app-user-profile>
     </div>
   </div>
+
+  <div id="paginationForm" style="margin-top: 20px">
+    <form>
+      <label>Page:</label>
+      <select [(ngModel)]="page" name="page">
+        <option *ngFor="let p of pages" [value]="p">{{ p }}</option>
+      </select>
+      <button id="nextPageButton" (click)="nextPage()">Next</button>
+    </form>
+  </div>
 </div>
+
 

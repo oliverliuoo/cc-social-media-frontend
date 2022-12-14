@@ -24,9 +24,8 @@ export class PostPageService {
     return this.http.get<CommentRsp>(this.commentPath + '/' + postId);
   }
 
-  postComment(data): Observable<any>{
+  postComment(data): Observable<any> {
     return this.http.post(this.commentPath, data);
   }
 
 }
-
