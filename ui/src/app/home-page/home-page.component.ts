@@ -53,8 +53,10 @@ export class HomePageComponent {
         localStorage.setItem('userEmail', userData.Email);
         // has userData, login successfully
         this.userId = userData['UserID'];
-
-        let feedGetByUserUrl = appProperties.postServiceEndPoint + 'post/' + this.userId + '/user';
+        
+        let feedGetByUserUrl = appProperties.feedServiceEndPoint + '/feed/' + this.userId;
+        console.log(feedGetByUserUrl);
+        
         // fetch data from backend db
         this.http.get<PostRsp>(feedGetByUserUrl).subscribe((rsp: any) => {
           for (const record of rsp.data) {
