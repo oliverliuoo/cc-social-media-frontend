@@ -86,10 +86,10 @@ export class HomePageComponent {
     });
   }
   nextPage(): void{
-    if ((this.page-1) + this.perPage<=this.total_items){
+    if (this.page*this.perPage <=this.total_items){
       this.Datalistshow = this.postDataList.slice((this.page-1)*this.perPage,(this.page)*this.perPage);
     };
-    if ((this.page-1) + this.perPage>this.total_items){
+    if (this.page*this.perPage >this.total_items){
       this.Datalistshow = this.postDataList.slice((this.page-1)*this.perPage,(this.total_items));
     };
 
