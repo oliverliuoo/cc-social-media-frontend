@@ -53,10 +53,10 @@ export class HomePageComponent {
         localStorage.setItem('userEmail', userData.Email);
         // has userData, login successfully
         this.userId = userData['UserID'];
-        
+
         let feedGetByUserUrl = appProperties.feedServiceEndPoint + '/feed/' + this.userId;
         console.log(feedGetByUserUrl);
-        
+
         // fetch data from backend db
         this.http.get<PostRsp>(feedGetByUserUrl).subscribe((rsp: any) => {
           for (const record of rsp.data) {
@@ -86,6 +86,12 @@ export class HomePageComponent {
     });
   }
   nextPage(): void{
-    this.Datalistshow = this.postDataList.slice(this.page-1,(this.page-1)+this.perPage);
+    if ((this.page-1) + this.perPage<=this.total_items){
+      this.Datalistshow = this.postDataList.slice((this.page-1)*this.perPage,(this.page)*this.perPage);
+    };
+    if ((this.page-1) + this.perPage>this.total_items){
+      this.Datalistshow = this.postDataList.slice((this.page-1)*this.perPage,(this.total_items));
+    };
+
   }
 }
