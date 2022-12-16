@@ -24,6 +24,7 @@ export class PostPageComponent {
   @ViewChild('inputBox') inputBox: ElementRef;
   commentList: Array<Object>;
 
+  total_items=2;
   constructor(private http: HttpClient,
               private postPageService: PostPageService,
               private routes: ActivatedRoute,
@@ -64,6 +65,10 @@ export class PostPageComponent {
         })
       }
     });
+
+
+
+
   }
 
   onPostComment(): void {
@@ -101,6 +106,7 @@ export class PostPageComponent {
       data: { 'postId': this.postId }
     });
   }
+
 }
 
 
