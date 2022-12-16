@@ -31,7 +31,7 @@ export class HomePageComponent {
   ngOnInit(): void {
     this.pages = [];
     this.page = 0;
-    this.perPage =1;
+    this.perPage =3;
     this.checkLogin();
     // Initialize the pages array
 
