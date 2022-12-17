@@ -9,13 +9,13 @@
           <div class="col-2"></div>
         </div>
         <p style="color: red;">{{message}}</p>
-        <div class="row pt-1 pb-2 px-5" id="email-box">
-          <input type="email" class="form-control" placeholder="Email" [(ngModel)]="email">
-          <p style="font-size: 0.7rem; color: red;" class="my-0 mx-2">{{change_email}}</p>
-        </div>
         <div class="row py-2 px-5" id="username-box">
           <input type="text" class="form-control" placeholder="Username" [(ngModel)]="username">
           <p style="font-size: 0.7rem; color: red;" class="my-0 mx-2">{{change_username}}</p>
+        </div>
+        <div class="row pt-1 pb-2 px-5" id="email-box">
+          <input type="email" class="form-control" placeholder="Email" [(ngModel)]="email">
+          <p style="font-size: 0.7rem; color: red;" class="my-0 mx-2">{{change_email}}</p>
         </div>
         <div class="row py-2 px-5" id="password-box">
           <input type="password" class="form-control" placeholder="Password" [(ngModel)]="password">

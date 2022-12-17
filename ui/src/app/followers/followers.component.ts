@@ -25,12 +25,15 @@ export class FollowersComponent implements OnInit {
     // this.followingService.getFollowings(this.userID)
     //   .subscribe((data) => this.setFollowingList(data));
     this.userID = localStorage.getItem('userId');
+    this.followingService.getFollowings(this.userID)
+      .subscribe((data) => this.setFollowerList(data));
   }
 
   setFollowerList(theFollower: Follower): void {
     // for (let i = 0; i < theFollower.length; i++) {
     // @ts-ignore
     for (const item of theFollower) {
+      console.log(item);
       const follower = new Follower();
       follower.FollowerID = item.FollowerID;
       follower.UserID = item.UserID;
