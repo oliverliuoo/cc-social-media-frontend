@@ -14,6 +14,9 @@
 <!--</div>-->
 <div class="container">
   <div class="flex">
+    <div class="user-profile">
+      <app-user-profile></app-user-profile>
+    </div>
     <div class="post-feeds">
       <div class="upload">
         <app-post-upload-dialog></app-post-upload-dialog>
@@ -24,9 +27,6 @@
                        [authorName]="data.user_id"
                        [imgUrl]="data.photo_url"></app-post-page>
       </div>
-    </div>
-    <div class="user-profile">
-      <app-user-profile></app-user-profile>
     </div>
   </div>
 </div>
