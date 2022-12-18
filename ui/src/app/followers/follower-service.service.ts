@@ -17,7 +17,7 @@ export class FollowerServiceService {
   }
 
   getFollowingServiceUrl(): string {
-    return appProperties.userServiceEndPoint + 'follow';
+    return appProperties.userServiceEndPoint + 'followers/';
   }
 
 

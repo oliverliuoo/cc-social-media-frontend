@@ -9,10 +9,10 @@
             </div>
           </div>
         </div>
-        <p></p>
-        <button id="show_follower" type="button" (click)="onLookup()" class="btn btn-primary">Show!</button>
-        <!-- You typed: <span *ngIf="artistName"> "{{ artistName }}" </span> -->
-        <p></p>
+<!--        <p></p>-->
+<!--        <button id="show_follower" type="button" (click)="onLookup()" class="btn btn-primary">Show!</button>-->
+<!--        &lt;!&ndash; You typed: <span *ngIf="artistName"> "{{ artistName }}" </span> &ndash;&gt;-->
+<!--        <p></p>-->
         <table class="table table-striped">
           <thead>
           <tr>
@@ -23,7 +23,7 @@
           <tbody>
           <tr *ngFor="let p of followingList; index as i">
 <!--            <td>{{ p.UserID }}</td>-->
-            <td>{{ p.FollowerID }}</td>
+            <td> <a href="/all-posts/{{ p.FollowerID }}">  {{ p.FollowerID }} </a></td>
           </tr>
           </tbody>
         </table>

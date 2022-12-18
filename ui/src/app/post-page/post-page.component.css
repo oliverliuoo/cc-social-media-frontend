@@ -42,5 +42,10 @@ mat-expansion-panel-header {
 }
 
 .post-time {
+  display: flex;
   font-size: 12px;
+}
+
+.delete-button {
+  margin-left: 440px;
 }

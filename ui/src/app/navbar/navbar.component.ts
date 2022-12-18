@@ -51,6 +51,7 @@ export class NavbarComponent implements OnInit {
   }
 
   checkUser(data): void {
+    console.log(this.searchId);
     if (data.UserID == this.searchId) {
       window.location.href = '/all-posts/' + this.searchId;
     }
