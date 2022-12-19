@@ -10,6 +10,8 @@
 
 .flex {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .post-feeds {

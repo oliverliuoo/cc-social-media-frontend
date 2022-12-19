@@ -14,20 +14,19 @@
 <!--</div>-->
 <div class="container">
   <div class="flex">
+    <div class="user-profile">
+      <app-user-profile></app-user-profile>
+    </div>
     <div class="post-feeds">
-      <div class="upload">
+      <div class="upload row">
         <app-post-upload-dialog></app-post-upload-dialog>
       </div>
-      <div class="post-page" *ngFor="let data of Datalistshow">
+      <div class="post-page row" *ngFor="let data of postDataList">
         <app-post-page [postId]="data.post_id"
                        [authorId]="data.user_id"
                        [authorName]="data.user_id"
                        [imgUrl]="data.photo_url"></app-post-page>
       </div>
-    </div>
-
-    <div class="user-profile">
-      <app-user-profile></app-user-profile>
     </div>
   </div>
 

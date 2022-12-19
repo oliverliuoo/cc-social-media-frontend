@@ -2,6 +2,7 @@ import {Component, Input} from '@angular/core';
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {appProperties} from "../app.config";
+import { EditUsernameService } from './rename.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -15,7 +16,8 @@ export class UserProfileComponent {
   logoutUrl = appProperties.userServiceEndPoint + 'logout';
 
   constructor(private http: HttpClient,
-              private router: Router) {
+              private router: Router,
+              private editService: EditUsernameService) {
   }
 
   ngOnInit(): void {
@@ -33,5 +35,21 @@ export class UserProfileComponent {
       this.userName = ''
       this.router.navigateByUrl('/login');
     })
+  }
+
+  onRename(): void {
+    const edit = document.getElementById('edit')
+    edit.style.display = 'none';
+
+    const rename = document.getElementById('rename')
+    rename.style.display = 'flex';
+  }
+
+  onSubmit(): void {
+    let newName : string = (<HTMLInputElement>document.getElementById("fname")).value;
+    console.log("new name is " + newName)
+    this.editService.editUsername(this.userId, newName).subscribe((data) => {console.log(data)});
+    localStorage.setItem('userName', newName);
+    window.location.reload();
   }
 }

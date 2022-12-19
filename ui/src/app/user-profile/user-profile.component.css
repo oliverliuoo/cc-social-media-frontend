@@ -3,7 +3,6 @@
 }
 
 .mat-elevation-z4 {
-  margin-right: 20px;
   width: 450px;
 }
 
@@ -39,3 +38,9 @@
   margin-left: 30px;
   font-size: 15px;
 }
+
+#rename {
+  display: none;
+  margin-bottom: 10px;
+}
+

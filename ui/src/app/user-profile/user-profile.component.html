@@ -23,6 +23,11 @@
         </div>
       </div>
       <div class="logout">
+        <div id="rename">
+          <input type="text" id="fname" name="Edit username" placeholder="Edit username">
+          <input type="submit" id="submit" value="Submit" (click)="onSubmit()">
+        </div>
+        <button class="btn btn-outline-primary my-3 my-sm-0 mr-3" id="edit" (click)="onRename()">Edit</button>
         <button class="btn btn-outline-primary my-3 my-sm-0 mr-3" (click)="onLogOut()">Log Out</button>
       </div>
     </mat-card-content>

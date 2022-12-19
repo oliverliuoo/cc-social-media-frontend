@@ -57,7 +57,7 @@ export class SignupComponent implements OnInit {
     }
   }
 
-  insertUser(): void {
+   insertUser(): void {
     // check if input email has existed in database
     this.signupService.validEmail(this.email).subscribe((data) => this.changeEmail(data),
       ((err:Error)=>{ // if not, check if email address valid using api from zerobounce
@@ -89,7 +89,7 @@ export class SignupComponent implements OnInit {
       }))
   }
 
-  
+
   onSignUp(): void {
     // check all box are not empty
     if (this.email && this.username && this.password) {
