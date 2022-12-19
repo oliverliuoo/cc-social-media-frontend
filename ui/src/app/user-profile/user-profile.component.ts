@@ -45,6 +45,14 @@ export class UserProfileComponent {
     rename.style.display = 'flex';
   }
 
+  onCancelRename(): void {
+    const edit = document.getElementById('edit')
+    edit.style.display = 'inline';
+
+    const rename = document.getElementById('rename')
+    rename.style.display = 'none';
+  }
+
   onSubmit(): void {
     let newName : string = (<HTMLInputElement>document.getElementById("fname")).value;
     console.log("new name is " + newName)
