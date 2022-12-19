@@ -10,8 +10,7 @@ export const appProperties = {
   commentServiceEndPoint: "https://lgwxyktbpd.execute-api.us-east-2.amazonaws.com/prod/",
   //commentServiceEndPoint: "https://d7dl8k2ursld3.cloudfront.net/",
   // feedServiceEndPoint: "http://socialmediafeed-env.eba-ait8ygdw.us-east-2.elasticbeanstalk.com",
-  // feedServiceEndPoint: "https://lgwxyktbpd.execute-api.us-east-2.amazonaws.com/prod/",
-  feedServiceEndPoint: "https://d7dl8k2ursld3.cloudfront.net/",
-  cloudFrontEndPoint: "https://d7dl8k2ursld3.cloudfront.net/",
+  feedServiceEndPoint: "https://lgwxyktbpd.execute-api.us-east-2.amazonaws.com/prod/",
+  // cloudFrontEndPoint: "https://d7dl8k2ursld3.cloudfront.net/",
   photoPlaceHolderUrl: 'https://social-media-photo-bucket.s3.us-east-2.amazonaws.com/placeholder.png',
 }
