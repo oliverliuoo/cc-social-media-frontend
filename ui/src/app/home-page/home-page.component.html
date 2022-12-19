@@ -29,5 +29,16 @@
       </div>
     </div>
   </div>
+
+  <div id="paginationForm" style="margin-top: 20px">
+    <form>
+      <label>Page:</label>
+      <select [(ngModel)]="page" name="page">
+        <option *ngFor="let p of pages" [value]="p">{{ p }}</option>
+      </select>
+      <button id="nextPageButton" (click)="nextPage()">Go</button>
+    </form>
+  </div>
 </div>
+
 

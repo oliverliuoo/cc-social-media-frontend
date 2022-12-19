@@ -4,6 +4,9 @@
 
         <mat-card-header>
           <mat-card-title>{{authorName}}</mat-card-title>
+          <button class="delete-button" mat-button (click)="openDeleteDialog()" *ngIf="showDelete">
+            <mat-icon>delete_forever</mat-icon>
+          </button>
         </mat-card-header>
 
     <img mat-card-image [src]="imgUrl" alt="...">
@@ -37,5 +40,8 @@
     </div>
 
   </mat-card>
+
+
+
 </div>
 

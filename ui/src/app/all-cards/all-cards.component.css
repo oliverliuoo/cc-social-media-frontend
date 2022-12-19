@@ -1,4 +1,5 @@
 .all-cards {
+  margin-left: 90px;
   display: flex;
   flex-flow: row wrap;
   /*justify-content: space-around;*/
