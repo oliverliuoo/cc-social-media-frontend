@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {LoginServiceService} from "../login-page/log.service";
 import { Post, PostRsp } from "../post-page/post";
 import {appProperties} from "../app.config";
+import {User} from "../login-page/log";
 
 
 @Component({
@@ -47,12 +48,19 @@ export class HomePageComponent {
       // @ts-ignore
       let userData = rsp.user;
       if (userData !== null) {
-        // cache user info
+        // cache userId and email
         localStorage.setItem('userId', userData.UserID);
-        localStorage.setItem('userName', userData.Username);
         localStorage.setItem('userEmail', userData.Email);
+
         // has userData, login successfully
         this.userId = userData['UserID'];
+
+        // get username
+        this.http.get<User>(appProperties.userServiceEndPoint + 'users/' + this.userId).subscribe(
+          (userData) => {
+            localStorage.setItem('userName', userData.Username);
+          }
+        )
 
         let feedGetByUserUrl = appProperties.feedServiceEndPoint + '/feed/' + this.userId;
         console.log(feedGetByUserUrl);

@@ -59,7 +59,9 @@ export class UserProfileComponent {
     this.editService.editUsername(this.userId, newName).subscribe((data) => {
       console.log(data)
       localStorage.setItem('userName', newName);
+      this.userName = newName;
       this.ngOnInit(); // reinitialize username
+      window.location.reload();
     });
   }
 }
