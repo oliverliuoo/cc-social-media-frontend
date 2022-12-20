@@ -56,8 +56,10 @@ export class UserProfileComponent {
   onSubmit(): void {
     let newName : string = (<HTMLInputElement>document.getElementById("fname")).value;
     console.log("new name is " + newName)
-    this.editService.editUsername(this.userId, newName).subscribe((data) => {console.log(data)});
-    localStorage.setItem('userName', newName);
-    window.location.reload();
+    this.editService.editUsername(this.userId, newName).subscribe((data) => {
+      console.log(data)
+      localStorage.setItem('userName', newName);
+      window.location.reload();
+    });
   }
 }
