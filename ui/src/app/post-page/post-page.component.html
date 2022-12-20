@@ -26,7 +26,8 @@
         </mat-expansion-panel-header>
         <div class="comment-list">
           <div class="comment" *ngFor="let data of commentList">
-            <span class="comment-user"> {{data.userName}} </span><span>: {{data.comment}} </span>
+            <span class="comment-user"> <a href="/all-posts/{{data.userId}}">{{data.userName}}</a>
+            </span><span>: {{data.comment}} </span>
           </div>
         </div>
       </mat-expansion-panel>
