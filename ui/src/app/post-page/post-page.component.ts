@@ -5,6 +5,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router'
 import {appProperties} from "../app.config";
 import {DeletePostDialogComponent} from '../delete-post-dialog/delete-post-dialog.component';
+import {User} from "../login-page/log";
 
 @Component({
   selector: 'app-post-page',
@@ -43,8 +44,14 @@ export class PostPageComponent {
       this.imgUrl = postData.photo_url;
       this.postText = postData.post_text;
       this.authorId = postData.user_id;
-      this.authorName = postData.user_name;
+      // this.authorName = postData.user_name;
       this.postTime = postData.time_stamp;
+      // fetch authorName
+      this.http.get<User>(appProperties.userServiceEndPoint + 'users/' + this.authorId).subscribe(
+        (userData) => {
+          this.authorName = userData.Username;
+        }
+      )
       if (this.authorName === null || undefined) {
         this.authorName = this.authorId;
       }
@@ -65,9 +72,6 @@ export class PostPageComponent {
         })
       }
     });
-
-
-
 
   }
 
