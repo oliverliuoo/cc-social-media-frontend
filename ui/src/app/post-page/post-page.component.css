@@ -47,5 +47,6 @@ mat-expansion-panel-header {
 }
 
 .delete-button {
-  margin-left: 440px;
+  position: absolute;
+  left: 550px;
 }
