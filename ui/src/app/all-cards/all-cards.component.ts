@@ -39,7 +39,7 @@ export class AllCardsComponent implements OnInit {
     this.userId = this.route.snapshot.paramMap.get('user_id');
     // this.userId =  localStorage.getItem('userId');
     console.log(this.userId);
-    let postGetByUserUrl = appProperties.cloudFrontEndPoint + 'post/' + this.userId + '/user';
+    let postGetByUserUrl = appProperties.postServiceEndPoint + 'post/' + this.userId + '/user';
     // fetch user's post from backend db
     this.http.get(postGetByUserUrl).subscribe((rsp: any) => {
       for (const record of rsp.data) {
